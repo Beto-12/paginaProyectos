@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Proyectos</title>
+</head>
+
+<style>
+    * {
+        margin: 0px;
+        padding: 0px;
+    }
+
+    body {
+        background-color: rgb(255, 255, 255);
+    }
+
+    .contenedorPrincipal {
+        font-family: Arial, Helvetica, sans-serif;
+        width: 90%;
+        height: 100%;
+        margin: 0 auto;
+
+    }
+
+    body h1 {
+        text-align: center;
+        font-size: 50px;
+        color: black;
+        background: linear-gradient(90deg, #72ff52, #0f791f, #136604);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+
+    .titulo{
+        background-color: black;
+        width: 100%;
+    }
+
+    .ContenedorProyectos {
+        margin-top: 30px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        
+    }
+
+    .Proyecto h2 {
+        padding-bottom: 20px;
+        font-size: 30px;
+    }
+
+    .ContenedorProyectos .Proyecto {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        border: 1px solid black;
+        border-radius: 10px;
+        box-shadow: 1px 1px 8px 4px rgba(10, 140, 3, 0.8);
+        background-color: white;
+    }
+
+    img {
+        width: 100%;
+
+    }
+
+    p {
+        font-size: 18px;
+        margin: 10px 0px 10px 0px;
+        text-align: center;
+    }
+
+    a {
+        margin: 5px 0px 5px 0px;
+        text-decoration: none;
+        color: black;
+    }
+
+    a:hover {
+        text-decoration: underline;
+
+    }
+
+    footer {
+        background-color: black;
+        width: 100%;
+        margin-top: 10px;
+        color: white;
+        text-align: center;
+    }
+
+    @media (max-width: 600px) {
+        .ContenedorProyectos {
+            grid-template-columns: 1fr;
+        }
+
+        .Proyecto p {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+    }
+
+    @media (min-width: 601px) and (max-width: 900px) {
+        .Proyecto p {
+            font-size: 16px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .Proyecto a {
+            font-size: 13px;
+        }
+    }
+</style>
+
+<body>
+
+    <header class="titulo">
+        <h1>MIS PROYECTOS</h1>
+    </header>
+
+    <div class="contenedorPrincipal">
+        <div class="ContenedorProyectos">
+            <div class="Proyecto">
+                <h2>Superheroes</h2>
+                <img src="https://artquid.twic.pics/art/10/146/692772.1890112247.2.o972845408.jpg?twic=v1/cover=575/background=white"
+                    alt="Imagen de la pagina de superheroes">
+                <p>Haz click en el sigueinte enlace para que veas nuestra pagina</p>
+            </div>
+
+            <div class="Proyecto">
+                <h2>Quién soy yo</h2>
+                <img src="https://simplicity.online/wp-content/uploads/sites/25/2017/07/programmer.jpg"
+                    alt="Imagen de la pagina quien soy yo">
+                <p>Haz click en el sigueinte enlace para que veas nuestra pagina</p>
+                <a href="https://page-web-rust.vercel.app/" target="_blank">Visitar la pagina de quien soy yo</a>
+            </div>
+
+            <div class="Proyecto">
+                <h2>Curriculum</h2>
+                <img src="https://online-cv.webjeda.com/assets/images/turquoise.jpg" alt="Imagen de curriculo">
+                <p>Haz click en el sigueinte enlace para que veas nuestra pagina</p>
+                <a href="https://page-curriculo.vercel.app/" target="_blank">Visitar la pagina del Curriculum</a>
+            </div>
+
+            <div class="Proyecto">
+                <h2>Despliegue</h2>
+            </div>
+
+        </div>
+
+    </div>
+    <footer>&copy;Pagina hecha por Carlos Becerra</footer>
+</body>
+
+</html>
