@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN5piF8YHSuWHZq2k3E2Fvuedv7YUFk8" crossorigin="anonymous"></script>
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        background-color: #c9c9c9;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 100vh;
+        width: 100%;
+        background-image: url("https://s1.elespanol.com/2024/08/17/enclave-ods/historias/878922213_248531354_1706x1280.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        color: rgb(255, 255, 255);
+    }
+
+    .contenedorPrincipal {
+        padding: 20px;
+        width: 500px;
+        border-radius: 10px;
+        animation: borderContenedor 0.9s infinite alternate;
+        background-color: rgb(177, 248, 154);
+        background-clip: text;
+    }
+
+    @keyframes borderContenedor {
+        0% {
+            box-shadow: 0px 0px 10px rgb(28, 111, 1);
+        }
+
+        50% {
+            box-shadow: 0px 0px 20px rgb(28, 111, 1);
+        }
+
+        100% {
+            box-shadow: 0px 0px 10px rgb(28, 111, 1);
+        }
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .inputDatos {
+        display: flex;
+        flex-direction: column;
+        width: 200px;
+        margin: 0 auto;
+    }
+
+    .inputDatos input {
+        font-size: 15px;
+        padding: 10px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+        color: rgb(7, 7, 7);
+        background-color: rgb(255, 255, 255, 0.3);
+        display: flex;
+    }
+
+    .inputDatos select {
+        font-size: 15px;
+        padding: 10px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+        color: rgb(0, 0, 0);
+        background-color: rgb(255, 255, 255, 0.3);
+    }
+
+    .inputDatos select option {
+        color: black;
+    }
+
+    .inputDatos input::placeholder {
+        color: rgb(67, 67, 67);
+        opacity: 1;
+    }
+
+
+    .inputDatos input:hover {
+        position: relative;
+        top: -5px;
+    }
+
+    .inputGeneros {
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    .boton {
+        text-align: center;
+        margin-bottom: 10px;
+
+    }
+
+    .boton:hover {
+        position: relative;
+        top: 5px;
+    }
+
+    .boton button {
+        padding: 5px 10px;
+        border-radius: 10px;
+        cursor: pointer;
+        background-clip: text;
+        color: white;
+    }
+
+    /* Estilos para las alertas de Bootstrap */
+    .alert {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 300px;
+        padding: 20px;
+        border: none;
+        border-radius: 10px;
+        text-align: center;
+        animation: aparicion 0.8s ease-in-out;
+    }
+
+    .alert-danger {
+        background-color: white;
+        box-shadow: 0px 0px 20px red;
+    }
+
+    .alert-danger h4 {
+        color: red;
+        font-weight: bold;
+    }
+
+    .alert-success {
+        background-color: rgb(203, 246, 188);
+        box-shadow: 0px 0px 20px green;
+    }
+
+    .alert-success h4 {
+        color: green;
+        font-weight: bold;
+    }
+
+    @keyframes aparicion {
+        from {
+            opacity: 0;
+            transform: translate(-50%, -55%);
+        }
+        to {
+            opacity: 1;
+            transform: translate(-50%, -50%);
+        }
+    }
+
+    @media screen and (max-width: 600px) {
+        .contenedorPrincipal {
+            width: 90%;
+        }
+
+        .inputDatos {
+            width: 100%;
+        }
+        
+        .alert {
+            width: 90%;
+        }
+    }
+</style>
+
+<body>
+    <div class="contenedorPrincipal">
+        <h1>REGISTRARSE</h1>
+        <div class="inputDatos">
+            <input type="text" placeholder="Nombres" id="nombre">
+            <input type="text" placeholder="Apellidos" id="apellido">
+            <input type="tel" placeholder="Número de Teléfono" id="tel" pattern="[0-9]{10}">
+            <select id="tipoDocumento" required>
+                <option value="">Tipo de documento...</option>
+                <option id="cedulaCiudadania" value="Cédula de Ciudadania">Cédula de Ciudadania</option>
+                <option id="tarjetaIdentidad" value="Tarjeta de Identidad">Tarjeta de Identidad</option>
+                <option id="cedulaExtranjera" value="Cédula de Extranjeria">Cédula de Extranjeria</option>
+            </select>
+            <input type="text" placeholder="Número de Documento" id="documento" pattern="[0-9]{8,12}">
+            <input type="text" placeholder="Correo Electrónico" id="email">
+            <input type="date" id="fecha">
+        </div>
+        <div class="inputGeneros">
+            <label for="genero"><strong>Género:</strong></label>
+            <input type="radio" name="genero" id="masculino" /> Masculino
+            <input type="radio" name="genero" id="femenino" /> Femenino
+        </div>
+        <div class="boton">
+            <button id="boton1" onclick="enviar()">Enviar</button>
+        </div>
+    </div>
+
+    <!-- Alerta de Error (Bootstrap) -->
+    <div class="alert alert-danger d-none" id="alertaError" role="alert">
+        <h4 class="alert-heading">Error en el Formulario</h4>
+        <p id="errorMensaje"></p>
+        <hr>
+        <button type="button" class="btn btn-danger" onclick="cerrarAlerta('alertaError')">Cerrar</button>
+    </div>
+
+    <!-- Alerta de Éxito (Bootstrap) -->
+    <div class="alert alert-success d-none" id="alertaExito" role="alert">
+        <h4 class="alert-heading">Formulario Enviado</h4>
+        <p>El formulario se ha enviado correctamente.</p>
+        <hr>
+        <button type="button" class="btn btn-success" onclick="cerrarAlertaYLimpiar('alertaExito')">Cerrar</button>
+    </div>
+
+    <script>
+        function enviar() {
+            let errores = [];
+            let nombre = document.getElementById("nombre").value.trim();
+            let apellido = document.getElementById("apellido").value.trim();
+            let telefono = document.getElementById("tel").value.trim();
+            let tipoDocumento = document.getElementById("tipoDocumento").value;
+            let documento = document.getElementById("documento").value.trim();
+            let correo = document.getElementById("email").value.trim();
+            let fecha = document.getElementById("fecha").value;
+            let masculino = document.getElementById("masculino").checked;
+            let femenino = document.getElementById("femenino").checked;
+
+            if (nombre == "") {
+                errores.push("El nombre es obligatorio.");
+            } else if (apellido == "") {
+                errores.push("El apellido es obligatorio.");
+            } else if (telefono == "") {
+                errores.push("El telefono es obligatorio");
+            } else if(tipoDocumento == "") {
+                errores.push("El tipo de documento es obligatorio.");
+            } else if (documento == "") {
+                errores.push("El documento es obligatorio.");
+            } else if (!correo.includes("@") || correo == "") {
+                errores.push("Correo inválido.");
+            } else if (fecha == "") {
+                errores.push("Debe seleccionar una fecha.");
+            } else if (!masculino && !femenino){
+                errores.push("Debe seleccionar un género.");
+            }; 
+            
+            // Cerrar todas las alertas antes de mostrar una nueva
+            cerrarTodasLasAlertas();
+            
+            if (errores.length > 0) {
+                document.getElementById("errorMensaje").innerHTML = errores.join("<br> <br>");
+                document.getElementById("alertaError").classList.remove("d-none");
+            } else {
+                document.getElementById("alertaExito").classList.remove("d-none");
+            }
+
+            // Almacenar los datos en un array
+            let datos = [];
+            datos.push("Datos del formulario:");
+            datos.push(`Nombre: ${nombre}`);
+            datos.push(`Apellido: ${apellido}`);
+            datos.push(`Teléfono: ${telefono}`);
+            datos.push(`Tipo de Documento: ${tipoDocumento}`);
+            datos.push(`Número de Documento: ${documento}`);
+            datos.push(`Correo: ${correo}`);
+            datos.push(`Fecha: ${fecha}`);
+            datos.push(`Género: ${masculino ? "Masculino" : "Femenino"}`);
+
+            console.log(datos);
+        }
+
+        // Función para cerrar una alerta específica
+        function cerrarAlerta(idAlerta) {
+            document.getElementById(idAlerta).classList.add("d-none");
+        }
+
+        // Función para cerrar la alerta de éxito y limpiar el formulario
+        function cerrarAlertaYLimpiar(idAlerta) {
+            document.getElementById(idAlerta).classList.add("d-none");
+            limpiarFormulario();
+        }
+
+        // Función para limpiar todos los campos del formulario
+        function limpiarFormulario() {
+            document.getElementById("nombre").value = "";
+            document.getElementById("apellido").value = "";
+            document.getElementById("tel").value = "";
+            document.getElementById("tipoDocumento").value = "";
+            document.getElementById("documento").value = "";
+            document.getElementById("email").value = "";
+            document.getElementById("fecha").value = "";
+            document.getElementById("masculino").checked = false;
+            document.getElementById("femenino").checked = false;
+        }
+
+        // Función para cerrar todas las alertas
+        function cerrarTodasLasAlertas() {
+            document.querySelectorAll('.alert').forEach(function(alerta) {
+                alerta.classList.add('d-none');
+            });
+        }
+    </script>
+</body>
+
+</html>
