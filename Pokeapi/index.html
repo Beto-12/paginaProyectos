@@ -261,6 +261,7 @@
     .estadisticas h2 {
         font-size: 18px;
     }
+
     @media (max-width: 400px){
         
         .contenedorPrincipal {
@@ -282,6 +283,19 @@
         .contenedorPrincipal {
             flex-direction: column;
             align-items: center;
+        }
+    }
+    @media (max-width: 1024px) {
+        .contenedorPrincipal {
+            align-items: center;
+            padding-top: 20px;
+        }
+        .card {
+            width: 300px;
+        }
+        .cuadroIzquierda, #imagenIzquierda, .cuadroDerecho, #imagenDerecho {
+            width: 250px;
+            height: 300px;
         }
     }
 </style>
