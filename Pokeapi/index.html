@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemones</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        background-color: #e0f7fa;
+        font-family: Arial, sans-serif;
+        display: grid;
+        place-content: center;
+        height: 100%;
+        width: 90%;
+        margin: 0 auto;
+        background-image: url('https://p4.wallpaperbetter.com/wallpaper/933/827/743/pokemon-pixel-art-wallpaper-preview.jpg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .contenedorPrincipal {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        padding-top: 30px;
+        
+    }
+
+    .cuadroIzquierda,
+    #imagenIzquierda {
+        border-radius: 10px;
+        width: 500px;
+        height: 500px;
+        filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.9));
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        animation: aparecer 1s ease-out;
+    }
+    .cuadroDerechio, #imagenDerecho {
+        border-radius: 10px;
+        width: 500px;
+        height: 500px;
+        filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.9));
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        animation: aparecer 1s ease-out;
+    }
+
+    .card {
+        perspective: 1000px;
+        width: 350px;
+        height: 500px;
+        border-radius: 10px;
+        animation: aparecer 1s ease-out;
+    }
+
+    @keyframes aparecer {
+        0% {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .card:hover {
+        box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+        transform: scale(1.02);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card-inner {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        transform-style: preserve-3d;
+        transition: transform 0.8s cubic-bezier(0.4, 0.2, 0.2, 1);
+    }
+
+    .card.flipped .card-inner {
+        transform: rotateY(180deg);
+    }
+
+    .card-front {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        border-radius: 10px;
+    }
+
+    .card-front #tittleTypes {
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    .card-front,
+    .card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        border-radius: 10px;
+        background-color: #f0f0f0;
+        overflow: hidden;
+
+    }
+
+    .card-back {
+        transform: rotateY(180deg);
+    }
+
+    .id {
+        font-size: 60px;
+        text-align: center;
+        margin: 10px 0px;
+    }
+
+    .imagenes {
+        margin: 10px 10px;
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    img {
+        width: 150px;
+        height: 150px;
+    }
+
+    .content {
+        text-align: center;
+        padding: 10px;
+    }
+
+    .card-front #nombre {
+        font-style: italic;
+        color: white;
+        font-size: 30px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .pesoAltura {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .pesoAltura h2 {
+        font-size: 18px;
+        margin: 10px 0;
+        color: white;
+    }
+
+    .card-front #tittleTypes {
+        color: white;
+        align-items: center;
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    .sectionTypes,
+    .botonesDebilidades {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        margin: 10px;
+    }
+
+    button {
+        padding: 8px 16px;
+        border-radius: 10px;
+        border: none;
+        background-color: #81d4fa;
+        cursor: pointer;
+        font-weight: bold;
+        color: white;
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        justify-content: center;
+        animation: entradaBoton 0.3s ease-in-out;
+    }
+    @keyframes entradaBoton {
+        from {
+            transform: scale(0);
+            opacity: 0;
+        }
+        to {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+
+    .card-back h1 {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .debilidades {
+        margin: 20px 0px 20px 0px;
+        font-size: 13px;
+        text-align: center;
+    }
+
+    .debilidades h2 {
+        margin-bottom: 20px;
+    }
+
+    .botonesDebilidades {
+        display: grid;
+        grid-template-columns: repeat(2, 100px);
+        place-self: center;
+        gap: 10px;
+    }
+
+    .estadisticas {
+        margin-top: 10px;
+    }
+
+    .estadisticas h2 {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .barra-progreso {
+        width: 80%;
+        height: 15px;
+        background-color: #bebdbd;
+        border-radius: 10px;
+        overflow: hidden;
+        margin: 5px auto;
+    }
+
+    .barra {
+        height: 100%;
+        
+        border-radius: 10px 0 0 10px;
+        transition: width 0.5s ease-in-out;
+    }
+
+    .estadisticas div {
+        margin-bottom: 5px;
+    }
+
+    .estadisticas h2 {
+        font-size: 18px;
+    }
+    @media (max-width: 400px){
+        
+        .contenedorPrincipal {
+            flex-direction: column;
+            align-items: center;
+        }
+        .id{
+            font-size: 30px;
+        }
+        .card{
+            width: 300px;
+        }
+        .cuadroIzquierda, #imagenIzquierda, .cuadroDerecho, #imagenDerecho {
+            width: 200px;
+            height: 200px;
+        }
+    }
+    @media (max-width: 768px) {
+        .contenedorPrincipal {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+</style>
+
+<body>
+    <div class="name">
+        <h3 id="id" class="id"></h3>
+    </div>
+    <div class="contenedorPrincipal">
+        <div id="cuadroIzquierda" class="imagenIzquierda">
+            <img src="" alt="" id="imagenIzquierda">
+        </div>
+        <div id="card" class="card">
+            <div class="card-inner">
+                <div id="cuadro1" class="card-front">
+                    <h1 id="nombre"></h1>
+                    <div class="imagenes">
+                        <img src="" alt="" id="imagen1">
+                        <img src="" alt="" id="imagen2">
+                    </div>
+
+                    <div id="content" class="content">
+                        
+                    </div>
+                    <h1 id="tittleTypes">Tipos:</h1>
+                    <div class="sectionTypes"></div>
+
+                    <div class="content">
+                        <div id="pesoAltura" class="pesoAltura">
+                            <h2 id="peso"></h2>
+                            <h2 id="altura"></h2>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="cuadro2" class="card-back">
+                    <div id="debilidades" class="debilidades">
+                        <h2>Debilidades del Pokemon:</h2>
+
+                        <div id="botonesDebilidades" class="botonesDebilidades"></div>
+                    </div>
+
+                    <div id="estadisticas" class="estadisticas">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="cuadroDerecho" class="imagenDerecho">
+            <img src="" alt="" id="imagenDerecho">
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+
+        function idAleatorio() {
+            const numero = Math.floor(Math.random() * 600) + 1;
+            return numero;
+        }
+
+        function obtenerColorPorTipo(tipo) {
+            const colores = {
+                fire: "#f08030",
+                water: "#6890f0",
+                grass: "#78c850",
+                electric: "#f8d030",
+                ice: "#98d8d8",
+                fighting: "#c03028",
+                poison: "#a040a0",
+                ground: "#e0c068",
+                flying: "#a890f0",
+                psychic: "#f85888",
+                bug: "#a8b820",
+                rock: "#b8a038",
+                ghost: "#705898",
+                dragon: "#7038f8",
+                dark: "#705848",
+                steel: "#b8b8d0",
+                fairy: "#ee99ac",
+                normal: "#a8a878"
+            };
+            return colores[tipo] || "#ccc"; // Color por defecto
+        }
+
+        function obtenerIconoPorTipo(tipo) {
+            const iconos = {
+                fire: "🔥",
+                water: "💧",
+                grass: "🍃",
+                electric: "⚡",
+                ice: "❄️",
+                fighting: "🥊",
+                poison: "☠️",
+                ground: "🌍",
+                flying: "🕊️",
+                psychic: "🔮",
+                bug: "🐛",
+                rock: "🪨",
+                ghost: "👻",
+                dragon: "🐉",
+                dark: "🌑",
+                steel: "⚙️",
+                fairy: "✨",
+                normal: "🔘"
+            };
+            return iconos[tipo] || "❓"; // emoji por defecto
+        }
+
+        document.addEventListener("DOMContentLoaded", async () => {
+            const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${idAleatorio()}`);
+            const resType = await axios.get(`https://pokeapi.co/api/v2/type/${res.data.types[0].type.name}`);
+            const nameColor = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${res.data.id}`);
+            console.log(nameColor.data);
+            console.log(resType.data);
+            console.log(res.data);
+
+            // Limpiamos el contenedor de debilidades
+            const sectionDebilidades = document.querySelector(".botonesDebilidades");
+            sectionDebilidades.innerHTML = ""; // Limpiamos contenido previo
+
+            // Creamos un botón por cada debilidad del Pokémon
+            resType.data.damage_relations.double_damage_from.forEach((debilidad) => {
+                const tipoDebilidad = debilidad.name;
+                const boton = document.createElement("button");
+                boton.textContent = `${obtenerIconoPorTipo(tipoDebilidad)} ${tipoDebilidad}`;
+                boton.style.backgroundColor = obtenerColorPorTipo(tipoDebilidad); // Cambiamos el color de fondo del botón
+                sectionDebilidades.appendChild(boton);
+                boton.style.borderRadius = "10px";
+
+            });
+
+            document.getElementById("imagen1").src = res.data.sprites.other.dream_world.front_default;
+            document.getElementById("imagen2").src = res.data.sprites.other.showdown.front_default;
+            document.getElementById("nombre").textContent = /*"nombre: " + */res.data.name;
+            document.getElementById("peso").textContent = "peso: " + (res.data.weight / 10) + " kg";
+            document.getElementById("altura").textContent = "altura: " + (res.data.height / 10) + " m";
+            document.getElementById("id").textContent = "Pokemon # " + res.data.id;
+            document.getElementById("id").style.color = nameColor.data.color.name; // Cambiamos el color del id
+
+            document.getElementById("imagenIzquierda").src = res.data.sprites.other.dream_world.front_default;
+            document.getElementById("imagenDerecho").src = res.data.sprites.other.dream_world.front_default;
+
+            // Seleccionamos el contenedor donde se colocarán los botones
+            const sectionTypes = document.querySelector(".sectionTypes");
+            sectionTypes.innerHTML = ""; // Limpiamos contenido previo
+
+            // Creamos un botón por cada tipo del Pokémon
+            res.data.types.forEach(typeObj => {
+                const tipo = typeObj.type.name;
+                const boton = document.createElement("button");
+                boton.textContent = `${obtenerIconoPorTipo(tipo)} ${tipo}`
+                boton.style.backgroundColor = obtenerColorPorTipo(tipo); // Cambiamos el color de fondo del botón
+                sectionTypes.appendChild(boton);
+                boton.style.marginTop = "10px";
+                boton.style.border = "1px solid #100e0e";
+            });
+
+            // Mostramos las estadísticas del Pokémon
+            const estadisticas = document.getElementById("estadisticas");
+            estadisticas.innerHTML = "<h2>Estadisticas:</h2>"; // Añadimos el título de estadísticas
+
+            res.data.stats.forEach(stat => {
+                const statDiv = document.createElement("div");
+                statDiv.style.marginBottom = "10px";
+                statDiv.style.textAlign = "left";
+                statDiv.style.width = "90%";
+                statDiv.style.margin = "5px auto";
+
+                const label = document.createElement("div");
+                label.style.display = "flex";
+                label.style.justifyContent = "space-between";
+                
+                const nombreEstadistica = document.createElement("span");
+                nombreEstadistica.textContent = `${stat.stat.name.charAt(0).toUpperCase() + stat.stat.name.slice(1)}:`;
+
+                const valorEstadistica = document.createElement("span");
+                valorEstadistica.textContent = `${stat.base_stat} / 255`
+
+                label.appendChild(nombreEstadistica);
+                label.appendChild(valorEstadistica);
+                statDiv.appendChild(label);
+
+                const barraProgreso = document.createElement("div");
+                barraProgreso.classList.add("barra-progreso");
+
+                const barra = document.createElement("div");
+                barra.classList.add("barra");
+                barra.style.width = `${(stat.base_stat / 255) * 100}%`; // Calculamos el porcentaje de la barra
+                barra.style.backgroundColor = nameColor.data.color.name;
+
+                barraProgreso.appendChild(barra);
+                statDiv.appendChild(barraProgreso);
+
+                estadisticas.appendChild(statDiv);
+            })
+
+            // Hacemos un degradado de color en el fondo de la carta
+            const color1 = obtenerColorPorTipo(res.data.types[0].type.name);
+            const color2 = obtenerColorPorTipo(res.data.types[1] ? res.data.types[1].type.name : res.data.types[0].type.name);
+            const gradiente = `linear-gradient(45deg, ${color1}, ${color2})`;
+            document.getElementById("cuadro1").style.background = gradiente;
+            document.getElementById("cuadro2").style.background = gradiente;
+
+            // Volteo de la carta
+            const card = document.getElementById("card");
+            const cuadro1 = document.getElementById("cuadro1");
+            const cuadro2 = document.getElementById("cuadro2");
+
+            cuadro1.addEventListener("click", () => {
+                card.classList.toggle("flipped");
+            });
+            cuadro2.addEventListener("click", () => {
+                card.classList.toggle("flipped");
+            });
+        });
+    </script>
+</body>
+</html>
