@@ -4,9 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN5piF8YHSuWHZq2k3E2Fvuedv7YUFk8" crossorigin="anonymous"></script>
+    <title>FORMULARIO</title>
 </head>
 
 <style>
@@ -17,112 +16,277 @@
     }
 
     body {
-        background-color: #c9c9c9;
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        background-color: #f0f0f0;
+    }
+
+    .contenedorPrincipal {
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        height: 100vh;
-        width: 100%;
-        background-image: url("https://s1.elespanol.com/2024/08/17/enclave-ods/historias/878922213_248531354_1706x1280.jpg");
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        color: rgb(255, 255, 255);
     }
 
-    .contenedorPrincipal {
-        padding: 20px;
-        width: 500px;
+    #btnAgregar:hover {
+        background-color: #27ae60;
+        color: white;
+        transition: background-color 0.5s ease;
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .contenedorBtnBuscar {
+        width: 90%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        margin-top: 20px;
+    }
+
+     .contenedorBoton {
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    #btnAgregar {
+        padding: 10px;
+        border: 2px solid #27ae60;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .buscarNombre {
+        width: 90%;
+        display: flex;
+        justify-content: start;
+        margin-top: 20px;
+    }
+
+    .buscarNombre input {
+        padding: 10px 20px;
+        background-color: #ffffff;
+        border: 2px solid #2ecc71;
         border-radius: 10px;
-        animation: borderContenedor 0.9s infinite alternate;
-        background-color: rgb(177, 248, 154);
-        background-clip: text;
+        outline: none;
+        color: #333;
     }
 
-    @keyframes borderContenedor {
-        0% {
-            box-shadow: 0px 0px 10px rgb(28, 111, 1);
+    .buscarNombre input:focus {
+        border-color: black;
+    }
+
+    .buscarNombre #btnBuscar {
+        margin-left: 10px;
+        background-color: #2ecc71;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
+    .buscarNombre #btnBuscar:hover {
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .buscarDocumento {
+        width: 90%;
+        display: flex;
+        justify-content: start;
+        margin-top: 20px;
+    }
+
+    .buscarDocumento input {
+        padding: 10px 20px;
+        background-color: #ffffff;
+        border: 2px solid #2ecc71;
+        border-radius: 10px;
+        outline: none;
+        color: #333;
+    }
+
+    .buscarDocumento #btnBuscarDoc{
+        margin-left: 10px;
+        background-color: #2ecc71;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
+    .buscarDocumento #btnBuscarDoc:hover{
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .botones {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    /* Estilo generales de la tabla*/
+    .tabla {
+        width: 90%;
+        margin: 15px auto;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;     /* Habilitar desplazamiento suave en dispositivos táctiles */
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        background: white;
+        border-radius: 10px;
+        padding: 15px 0;
+    }
+
+    /*Contenedor interno de la tabla*/
+    table {
+        width: max-content;
+        min-width: 100%;
+        border-collapse: collapse;
+        margin: 0 auto;
+    }
+
+    /*Cabeceras y celdas*/
+    th,
+    td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid #dddddd;
+        white-space: nowrap;
+        background: white;
+    }
+
+    th {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    /*Estilos del scrollbar*/
+    ::-webkit-scrollbar {
+        height: 8px;
+        width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
+    .modal {
+        display: none;   /* Oculto por defecto */
+        position: absolute;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: auto;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    /* Caja del contenido del modal */
+    .contenidoModal {
+        background: rgba(255, 255, 255, 0.95);
+        margin: 30px auto;
+        padding: 20px;
+        width: 350px;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        color: #333;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        animation: zoomIn 0.8s ease;
+    }
+
+    @keyframes zoomIn {
+        from {
+            opacity: 0;
+            transform: scale(0.8);
         }
 
-        50% {
-            box-shadow: 0px 0px 20px rgb(28, 111, 1);
-        }
-
-        100% {
-            box-shadow: 0px 0px 10px rgb(28, 111, 1);
+        to {
+            opacity: 1;
+            transform: scale(1);
         }
     }
 
-    h1 {
+    .contenidoModal h2 {
         text-align: center;
-        margin-bottom: 10px;
+        margin: 0px 0px 20px 0px;
+        font-size: 30px;
+        color: #2ecc71;
     }
 
     .inputDatos {
         display: flex;
         flex-direction: column;
-        width: 200px;
-        margin: 0 auto;
+        justify-content: center;
+        width: 100%;
+        gap: 20px;
+
     }
 
+    .inputDatos select,
     .inputDatos input {
-        font-size: 15px;
-        padding: 10px;
+        padding: 10px 20px;
+        background-color: #ffffff;
+        border: 2px solid #2ecc71;
         border-radius: 10px;
-        margin-bottom: 10px;
-        color: rgb(7, 7, 7);
-        background-color: rgb(255, 255, 255, 0.3);
+        outline: none;
+        color: #333;
+    }
+
+    .inputDatos select:focus,
+    .inputDatos input:focus {
+        border-color: #1a8145;
+    }
+
+    .inputGenero {
+        margin-top: 10px;
+    }
+
+    .inputGenero .textGenero {
+        margin-right: 10px;
+    }
+
+    .inputGenero .opcionesGenero {
         display: flex;
+        justify-content: space-between;
+        margin-top: 5px;
     }
 
-    .inputDatos select {
-        font-size: 15px;
-        padding: 10px;
-        border-radius: 10px;
-        margin-bottom: 10px;
-        color: rgb(0, 0, 0);
-        background-color: rgb(255, 255, 255, 0.3);
+    .btnEnviar {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+        gap: 10px;
     }
 
-    .inputDatos select option {
-        color: black;
-    }
-
-    .inputDatos input::placeholder {
-        color: rgb(67, 67, 67);
-        opacity: 1;
-    }
-
-
-    .inputDatos input:hover {
-        position: relative;
-        top: -5px;
-    }
-
-    .inputGeneros {
-        text-align: center;
-        margin: 10px 0;
-    }
-
-    .boton {
-        text-align: center;
-        margin-bottom: 10px;
-
-    }
-
-    .boton:hover {
-        position: relative;
-        top: 5px;
-    }
-
-    .boton button {
-        padding: 5px 10px;
+    .btnEnviar input,
+    .btnEnviar button {
+        background-color: #2ecc71;
+        color: white;
+        padding: 10px 20px;
+        border: none;
         border-radius: 10px;
         cursor: pointer;
-        background-clip: text;
-        color: white;
+        transition: background-color 0.2s ease;
+    }
+
+    .btnEnviar input:hover,
+    .btnEnviar button:hover {
+        background-color: #27ae60;
     }
 
     /* Estilos para las alertas de Bootstrap */
@@ -137,6 +301,19 @@
         border-radius: 10px;
         text-align: center;
         animation: aparicion 0.8s ease-in-out;
+        z-index: 1000;
+    }
+
+    @keyframes aparicion {
+        from {
+            opacity: 0;
+            transform: translate(-50%, -55%);
+        }
+
+        to {
+            opacity: 1;
+            transform: translate(-50%, -50%);
+        }
     }
 
     .alert-danger {
@@ -145,8 +322,23 @@
     }
 
     .alert-danger h4 {
+        margin-bottom: 10px;
         color: red;
         font-weight: bold;
+        font-size: 30px;
+    }
+
+    .alert-danger p {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+
+    .alert-danger button {
+        margin-top: 10px;
+        padding: 10px 30px;
+        color: rgb(255, 255, 255);
+        background-color: rgb(255, 0, 0);
+        border-radius: 10px;
     }
 
     .alert-success {
@@ -155,82 +347,398 @@
     }
 
     .alert-success h4 {
+        margin-bottom: 10px;
         color: green;
         font-weight: bold;
+        font-size: 30px;
     }
 
-    @keyframes aparicion {
-        from {
-            opacity: 0;
-            transform: translate(-50%, -55%);
+    .alert-success p {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+
+    .alert-success button {
+        margin-top: 10px;
+        padding: 10px 30px;
+        color: white;
+        background-color: green;
+        border-radius: 10px;
+    }
+
+    .alert-danger .btn-secondary {
+        background-color: rgb(114, 247, 114);
+    }
+
+    /* Estilos para filas seleccionadas */
+    .fila-seleccionada {
+        background-color: #d8ecff;
+    }
+
+    .cerrar-modal {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .cerrar-modal:hover {
+        color: black;
+    }
+
+    .d-none {
+        display: none;
+    }
+
+    @media (max-width: 768px) {
+        .tabla {
+            margin: 15px auto;
+            border-radius: 8px;
+            padding: 10px 0;
         }
-        to {
-            opacity: 1;
-            transform: translate(-50%, -50%);
+
+        th,
+        td {
+            padding: 10px 12px;
+            /* Reducir el relleno */
+            font-size: 14px;
         }
     }
 
-    @media screen and (max-width: 600px) {
-        .contenedorPrincipal {
-            width: 90%;
+    @media (max-width: 480px) {
+        .tabla {
+            margin: 15px auto;
         }
 
-        .inputDatos {
-            width: 100%;
+        .contenedorBtnBuscar {
+            grid-template-columns: 1fr;
+            place-items: center;
         }
-        
-        .alert {
-            width: 90%;
+
+        .contenidoModal {
+            width: 80%;
+        }
+
+        th,
+        td {
+            padding: 8px 10px;
+            font-size: 13px;
+        }
+
+        ::-webkit-scrollbar {
+            height: 6px;
+            width: 6px;
+        }
+
+        .opcionesGenero {
+            font-size: 14px;
         }
     }
+    
 </style>
 
 <body>
+
     <div class="contenedorPrincipal">
-        <h1>REGISTRARSE</h1>
-        <div class="inputDatos">
-            <input type="text" placeholder="Nombres" id="nombre">
-            <input type="text" placeholder="Apellidos" id="apellido">
-            <input type="tel" placeholder="Número de Teléfono" id="tel" pattern="[0-9]{10}">
-            <select id="tipoDocumento" required>
-                <option value="">Tipo de documento...</option>
-                <option id="cedulaCiudadania" value="Cédula de Ciudadania">Cédula de Ciudadania</option>
-                <option id="tarjetaIdentidad" value="Tarjeta de Identidad">Tarjeta de Identidad</option>
-                <option id="cedulaExtranjera" value="Cédula de Extranjeria">Cédula de Extranjeria</option>
-            </select>
-            <input type="text" placeholder="Número de Documento" id="documento" pattern="[0-9]{8,12}">
-            <input type="text" placeholder="Correo Electrónico" id="email">
-            <input type="date" id="fecha">
+        <div class="contenedorBtnBuscar">
+            <div class="contenedorbuscar">
+                <div id="buscarNombre" class="buscarNombre">
+                    <input type="text" id="buscar" placeholder="Buscar por nombre..." onkeyup="filtrarTabla()">
+                    <button id="btnBuscar" onclick="filtrarTabla()">Buscar</button>
+                </div>
+
+                <div id="buscarDocumento" class="buscarDocumento">
+                    <input type="text" id="inputBuscarDocumento" placeholder="Buscar por documento..."
+                        onkeyup="filtrarTabla()">
+                    <button id="btnBuscarDoc" onclick="filtrarTabla()">Buscar</button>
+                </div>
+            </div>
+
+            <div id="contenedorBoton" class="contenedorBoton">
+                <button id="btnAgregar" class="btnAgregar">Agregar registro</button>
+            </div>
+
         </div>
-        <div class="inputGeneros">
-            <label for="genero"><strong>Género:</strong></label>
-            <input type="radio" name="genero" id="masculino" /> Masculino
-            <input type="radio" name="genero" id="femenino" /> Femenino
+
+        <div id="tabla" class="tabla">
+
         </div>
-        <div class="boton">
-            <button id="boton1" onclick="enviar()">Enviar</button>
+        <div id="modal" class="modal">
+            <div class="contenidoModal">
+                <span class="cerrar-modal" onclick="cerrarModal()">&times;</span>
+                <h2 id="tituloModal">Formulario</h2>
+                <form id="formulario" class="formulario">
+                    <input type="hidden" id="indiceFilaSeleccionada" value="-1">
+                    <div class="inputDatos">
+                        <input type="text" placeholder="Nombres" id="nombre">
+                        <input type="text" placeholder="Apellidos" id="apellido">
+                        <input type="tel" placeholder="Número de Teléfono" id="tel" pattern="[0-9]{10}">
+                        <select id="tipoDocumento" required>
+                            <option value="">Tipo de documento...</option>
+                            <option id="cedulaCiudadania" value="Cédula de Ciudadania">Cédula de Ciudadania</option>
+                            <option id="tarjetaIdentidad" value="Tarjeta de Identidad">Tarjeta de Identidad</option>
+                            <option id="cedulaExtranjera" value="Cédula de Extranjeria">Cédula de Extranjeria</option>
+                        </select>
+                        <input type="text" placeholder="Número de Documento" id="documento" pattern="[0-9]{8,12}">
+                        <input type="text" placeholder="Correo Electrónico" id="email">
+                        <input type="date" id="fecha">
+                    </div>
+                    <div class="inputGenero">
+                        <div class="textGenero">
+                            <label for="genero"><strong>Género:</strong></label>
+                        </div>
+                        <div class="opcionesGenero">
+                            <input type="radio" name="genero" id="masculino" /> Masculino
+                            <input type="radio" name="genero" id="femenino" /> Femenino
+                            <input type="radio" name="genero" id="otro" /> Otro
+                        </div>
+                    </div>
+                    <div class="btnEnviar" id="botonesAccion">
+                        <input id="botonGuardar" type="button" value="Enviar Formulario" onclick="enviar()">
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Alerta de Error (Bootstrap) -->
+        <div class="alert alert-danger d-none" id="alertaError" role="alert">
+            <h4 class="alert-heading">Error en el Formulario</h4>
+            <p id="errorMensaje"></p>
+            <hr>
+            <button type="button" class="btn btn-danger" onclick="cerrarAlerta('alertaError')">Cerrar</button>
+        </div>
+
+        <!-- Alerta de Éxito (Bootstrap) -->
+        <div class="alert alert-success d-none" id="alertaExito" role="alert">
+            <h4 class="alert-heading">Formulario Enviado</h4>
+            <p>El formulario se ha enviado correctamente.</p>
+            <hr>
+            <button type="button" class="btn btn-success" onclick="cerrarAlertaYLimpiar('alertaExito')">Cerrar</button>
+        </div>
+
+        <!-- Alerta de Confirmación para Eliminar -->
+        <div class="alert alert-danger d-none" id="alertaConfirmacion" role="alert">
+            <h4 class="alert-heading">Confirmar Eliminación</h4>
+            <p>¿Está seguro que desea eliminar el registro seleccionado?</p>
+            <hr>
+            <button type="button" class="btn btn-danger" onclick="confirmarEliminacion()">Eliminar</button>
+            <button type="button" class="btn btn-secondary"
+                onclick="cerrarAlerta('alertaConfirmacion')">Cancelar</button>
         </div>
     </div>
 
-    <!-- Alerta de Error (Bootstrap) -->
-    <div class="alert alert-danger d-none" id="alertaError" role="alert">
-        <h4 class="alert-heading">Error en el Formulario</h4>
-        <p id="errorMensaje"></p>
-        <hr>
-        <button type="button" class="btn btn-danger" onclick="cerrarAlerta('alertaError')">Cerrar</button>
-    </div>
+</body>
 
-    <!-- Alerta de Éxito (Bootstrap) -->
-    <div class="alert alert-success d-none" id="alertaExito" role="alert">
-        <h4 class="alert-heading">Formulario Enviado</h4>
-        <p>El formulario se ha enviado correctamente.</p>
-        <hr>
-        <button type="button" class="btn btn-success" onclick="cerrarAlertaYLimpiar('alertaExito')">Cerrar</button>
-    </div>
+<script>
+    // Variables globales
+    let usuarios = [];
+    let filaSeleccionada = null;
+    let modoFormulario = "crear"; 
 
-    <script>
-        function enviar() {
-            let errores = [];
+    // Creación de la tabla
+    const tabla = document.createElement("table");
+    tabla.id = "tablaDatos";
+    tabla.style.width = "70%";
+    tabla.style.border = "1px solid black";
+    tabla.style.borderRadius = "10px";
+    tabla.style.overflow = "hidden";
+    tabla.style.borderCollapse = "collapse";
+
+    const encabezado = document.createElement("thead");
+    const filaEncabezado = document.createElement("tr");
+
+    const celdaEncabezado0 = document.createElement("th");
+    celdaEncabezado0.textContent = "#";
+    celdaEncabezado0.style.backgroundColor = "#4CAF50";
+    celdaEncabezado0.style.color = "white";
+    celdaEncabezado0.style.padding = "10px";
+
+    const celdaEncabezado1 = document.createElement("th");
+    const celdaEncabezado2 = document.createElement("th");
+    const celdaEncabezado3 = document.createElement("th");
+    const celdaEncabezado4 = document.createElement("th");
+    const celdaEncabezado5 = document.createElement("th");
+    const celdaEncabezado6 = document.createElement("th");
+    const celdaEncabezado7 = document.createElement("th");
+    const celdaEncabezado8 = document.createElement("th");
+    const celdaEncabezado9 = document.createElement("th");
+
+    celdaEncabezado1.textContent = "Nombre";
+    celdaEncabezado2.textContent = "Apellido";
+    celdaEncabezado3.textContent = "Número de telefono";
+    celdaEncabezado4.textContent = "Tipo de documento";
+    celdaEncabezado5.textContent = "Número de documento";
+    celdaEncabezado6.textContent = "Correo electrónico";
+    celdaEncabezado7.textContent = "Fecha";
+    celdaEncabezado8.textContent = "Genero";
+    celdaEncabezado9.textContent = "Acciones";
+
+    
+    [celdaEncabezado1, celdaEncabezado2, celdaEncabezado3, celdaEncabezado4,
+        celdaEncabezado5, celdaEncabezado6, celdaEncabezado7, celdaEncabezado8, celdaEncabezado9].forEach(celda => {
+            celda.style.backgroundColor = "#4CAF50";
+            celda.style.color = "white";
+            celda.style.padding = "10px";
+        });
+
+    const divTabla = document.getElementById("tabla");
+    const cuerpoTabla = document.createElement("tbody");
+    cuerpoTabla.id = "cuerpoTabla";
+
+    // Funciones para abrir el modal según la acción
+    function abrirModalAgregar() {
+        modoFormulario = "crear";
+        document.getElementById("tituloModal").textContent = "Agregar Nuevo Registro";
+        limpiarFormulario();
+
+        
+        const botonesAccion = document.getElementById("botonesAccion");
+        botonesAccion.innerHTML = '';
+        const btnGuardar = document.createElement("input");
+        btnGuardar.type = "button";
+        btnGuardar.value = "Guardar";
+        btnGuardar.onclick = enviar;
+        botonesAccion.appendChild(btnGuardar);
+
+       
+        document.getElementById("modal").style.display = "block";
+    }
+
+    function abrirModalActualizar() {
+        if (!filaSeleccionada) {
+            mostrarError("Debe seleccionar un registro para actualizar");
+            return;
+        }
+
+        modoFormulario = "actualizar";
+        document.getElementById("tituloModal").textContent = "Actualizar Registro";
+
+        // Obtener los datos de la fila seleccionada
+        cargarDatosFilaEnFormulario();
+
+        // Configurar botones
+        const botonesAccion = document.getElementById("botonesAccion");
+        botonesAccion.innerHTML = '';
+
+        const btnActualizar = document.createElement("input");
+        btnActualizar.type = "button";
+        btnActualizar.value = "Actualizar";
+        btnActualizar.onclick = actualizarRegistro;
+
+        const btnCancelar = document.createElement("button");
+        btnCancelar.textContent = "Cancelar";
+        btnCancelar.onclick = cerrarModal;
+
+        botonesAccion.appendChild(btnActualizar);
+        botonesAccion.appendChild(btnCancelar);
+
+        
+        document.getElementById("modal").style.display = "block";
+    }
+
+    function abrirModalEliminar() {
+        if (!filaSeleccionada) {
+            mostrarError("Debe seleccionar un registro para eliminar");
+            return;
+        }
+
+        
+        document.getElementById("alertaConfirmacion").classList.remove("d-none");
+    }
+
+    // Función para cerrar el modal
+    function cerrarModal() {
+        document.getElementById("modal").style.display = "none";
+        limpiarFormulario();
+    }
+
+    // Función para limpiar el formulario
+    function limpiarFormulario() {
+        document.getElementById("nombre").value = "";
+        document.getElementById("apellido").value = "";
+        document.getElementById("tel").value = "";
+        document.getElementById("tipoDocumento").value = "";
+        document.getElementById("documento").value = "";
+        document.getElementById("email").value = "";
+        document.getElementById("fecha").value = "";
+        document.getElementById("masculino").checked = false;
+        document.getElementById("femenino").checked = false;
+        document.getElementById("otro").checked = false;
+    }
+
+    // Función para cargar datos de fila seleccionada en formulario
+    function cargarDatosFilaEnFormulario() {
+        if (!filaSeleccionada) return;
+
+        document.getElementById("nombre").value = filaSeleccionada.cells[1].textContent;
+        document.getElementById("apellido").value = filaSeleccionada.cells[2].textContent;
+        document.getElementById("tel").value = filaSeleccionada.cells[3].textContent;
+        document.getElementById("tipoDocumento").value = filaSeleccionada.cells[4].textContent;
+        document.getElementById("documento").value = filaSeleccionada.cells[5].textContent;
+        document.getElementById("email").value = filaSeleccionada.cells[6].textContent;
+        document.getElementById("fecha").value = filaSeleccionada.cells[7].textContent;
+
+
+        const genero = filaSeleccionada.cells[8].textContent;
+        if (genero === "Masculino") {
+            document.getElementById("masculino").checked = true;
+        } else if (genero === "Femenino") {
+            document.getElementById("femenino").checked = true;
+        } else {
+            document.getElementById("otro").checked = true;
+        }
+    }
+
+    // Función para validar el formulario
+    function validarFormulario() {
+        let errores = [];
+        let nombre = document.getElementById("nombre").value.trim();
+        let apellido = document.getElementById("apellido").value.trim();
+        let telefono = document.getElementById("tel").value.trim();
+        let tipoDocumento = document.getElementById("tipoDocumento").value;
+        let documento = document.getElementById("documento").value.trim();
+        let correo = document.getElementById("email").value.trim();
+        let fecha = document.getElementById("fecha").value;
+        let masculino = document.getElementById("masculino").checked;
+        let femenino = document.getElementById("femenino").checked;
+        let otro = document.getElementById("otro").checked;
+
+        if (nombre == "") {
+            errores.push("El nombre es obligatorio.");
+        } else if (apellido == "") {
+            errores.push("El apellido es obligatorio.");
+        } else if (!/^\d{10}$/.test(telefono)) {
+            errores.push("El telefono debe tener 10 digitos");
+        } else if (tipoDocumento == "") {
+            errores.push("El tipo de documento es obligatorio.");
+        } else if (!/^\d{8,12}$/.test(documento)) {
+            errores.push("El documento debe tener entre 8 y 12 digitos");
+        } else if (!correo.includes("@") || correo == "") {
+            errores.push("Correo inválido.");
+        } else if (fecha == "") {
+            errores.push("Debe seleccionar una fecha.");
+        } else if (!masculino && !femenino && !otro) {
+            errores.push("Debe seleccionar un género.");
+        }
+
+        return errores;
+    }
+
+
+
+    // Función para enviar y guardar el formulario
+    function enviar() {
+        const errores = validarFormulario();
+        cerrarTodasLasAlertas();
+
+        if (errores.length > 0) {
+            document.getElementById("errorMensaje").innerHTML = errores.join("<br> <br>");
+            document.getElementById("alertaError").classList.remove("d-none");
+        } else {
+            document.getElementById("alertaExito").classList.remove("d-none");
+
+            // Obtener los datos del formulario
             let nombre = document.getElementById("nombre").value.trim();
             let apellido = document.getElementById("apellido").value.trim();
             let telefono = document.getElementById("tel").value.trim();
@@ -238,83 +746,193 @@
             let documento = document.getElementById("documento").value.trim();
             let correo = document.getElementById("email").value.trim();
             let fecha = document.getElementById("fecha").value;
-            let masculino = document.getElementById("masculino").checked;
-            let femenino = document.getElementById("femenino").checked;
+            let genero = document.getElementById("masculino").checked ? "Masculino" :
+                (document.getElementById("femenino").checked ? "Femenino" : "Otro");
 
-            if (nombre == "") {
-                errores.push("El nombre es obligatorio.");
-            } else if (apellido == "") {
-                errores.push("El apellido es obligatorio.");
-            } else if (telefono == "") {
-                errores.push("El telefono es obligatorio");
-            } else if(tipoDocumento == "") {
-                errores.push("El tipo de documento es obligatorio.");
-            } else if (documento == "") {
-                errores.push("El documento es obligatorio.");
-            } else if (!correo.includes("@") || correo == "") {
-                errores.push("Correo inválido.");
-            } else if (fecha == "") {
-                errores.push("Debe seleccionar una fecha.");
-            } else if (!masculino && !femenino){
-                errores.push("Debe seleccionar un género.");
-            }; 
-            
-            // Cerrar todas las alertas antes de mostrar una nueva
-            cerrarTodasLasAlertas();
-            
-            if (errores.length > 0) {
-                document.getElementById("errorMensaje").innerHTML = errores.join("<br> <br>");
-                document.getElementById("alertaError").classList.remove("d-none");
-            } else {
-                document.getElementById("alertaExito").classList.remove("d-none");
-            }
 
-            // Almacenar los datos en un array
-            let datos = [];
-            datos.push("Datos del formulario:");
-            datos.push(`Nombre: ${nombre}`);
-            datos.push(`Apellido: ${apellido}`);
-            datos.push(`Teléfono: ${telefono}`);
-            datos.push(`Tipo de Documento: ${tipoDocumento}`);
-            datos.push(`Número de Documento: ${documento}`);
-            datos.push(`Correo: ${correo}`);
-            datos.push(`Fecha: ${fecha}`);
-            datos.push(`Género: ${masculino ? "Masculino" : "Femenino"}`);
+            agregarRegistroATabla(nombre, apellido, telefono, tipoDocumento, documento, correo, fecha, genero);
 
-            console.log(datos);
-        }
-
-        // Función para cerrar una alerta específica
-        function cerrarAlerta(idAlerta) {
-            document.getElementById(idAlerta).classList.add("d-none");
-        }
-
-        // Función para cerrar la alerta de éxito y limpiar el formulario
-        function cerrarAlertaYLimpiar(idAlerta) {
-            document.getElementById(idAlerta).classList.add("d-none");
-            limpiarFormulario();
-        }
-
-        // Función para limpiar todos los campos del formulario
-        function limpiarFormulario() {
-            document.getElementById("nombre").value = "";
-            document.getElementById("apellido").value = "";
-            document.getElementById("tel").value = "";
-            document.getElementById("tipoDocumento").value = "";
-            document.getElementById("documento").value = "";
-            document.getElementById("email").value = "";
-            document.getElementById("fecha").value = "";
-            document.getElementById("masculino").checked = false;
-            document.getElementById("femenino").checked = false;
-        }
-
-        // Función para cerrar todas las alertas
-        function cerrarTodasLasAlertas() {
-            document.querySelectorAll('.alert').forEach(function(alerta) {
-                alerta.classList.add('d-none');
+            usuarios.push({
+                nombre,
+                apellido,
+                telefono,
+                tipoDocumento,
+                documento,
+                correo,
+                fecha,
+                genero
             });
-        }
-    </script>
-</body>
 
+            console.log(usuarios);
+
+            cerrarModal();
+        }
+    }
+
+    // Función para actualizar registro existente
+    function actualizarRegistro() {
+        const errores = validarFormulario();
+        cerrarTodasLasAlertas();
+
+        if (errores.length > 0) {
+            document.getElementById("errorMensaje").innerHTML = errores.join("<br> <br>");
+            document.getElementById("alertaError").classList.remove("d-none");
+        } else {
+            // Actualizar datos en la fila seleccionada
+            filaSeleccionada.cells[1].textContent = document.getElementById("nombre").value.trim();
+            filaSeleccionada.cells[2].textContent = document.getElementById("apellido").value.trim();
+            filaSeleccionada.cells[3].textContent = document.getElementById("tel").value.trim();
+            filaSeleccionada.cells[4].textContent = document.getElementById("tipoDocumento").value;
+            filaSeleccionada.cells[5].textContent = document.getElementById("documento").value.trim();
+            filaSeleccionada.cells[6].textContent = document.getElementById("email").value.trim();
+            filaSeleccionada.cells[7].textContent = document.getElementById("fecha").value;
+            filaSeleccionada.cells[8].textContent = document.getElementById("masculino").checked ? "Masculino" :
+                (document.getElementById("femenino").checked ? "Femenino" : "Otro");
+
+
+            document.getElementById("alertaExito").classList.remove("d-none");
+
+            cerrarModal();
+        }
+    }
+
+    // Función para confirmar eliminación de registro
+    function confirmarEliminacion() {
+        if (filaSeleccionada) {
+            filaSeleccionada.remove();
+            filaSeleccionada = null;
+            cerrarAlerta('alertaConfirmacion');
+
+            // Mostrar mensaje de éxito
+            const alertaExito = document.getElementById("alertaExito");
+            alertaExito.querySelector("h4").textContent = "Registro Eliminado";
+            alertaExito.querySelector("p").textContent = "El registro ha sido eliminado correctamente.";
+            alertaExito.classList.remove("d-none");
+        }
+    }
+
+    // Mostrar mensaje de error
+    function mostrarError(mensaje) {
+        document.getElementById("errorMensaje").innerHTML = mensaje;
+        document.getElementById("alertaError").classList.remove("d-none");
+    }
+
+    // Función para agregar registros a la tabla
+    function agregarRegistroATabla(nombre, apellido, telefono, tipoDocumento, documento, correo, fecha, genero) {
+        // Crear nueva fila en la tabla
+        const tabla = document.getElementById("tablaDatos");
+        const nuevaFila = cuerpoTabla.insertRow(-1);
+
+        const celdaNumero = nuevaFila.insertCell(0);
+        celdaNumero.textContent = tabla.rows.length - 1;
+        nuevaFila.insertCell(1).textContent = nombre;
+        nuevaFila.insertCell(2).textContent = apellido;
+        nuevaFila.insertCell(3).textContent = telefono;
+        nuevaFila.insertCell(4).textContent = tipoDocumento;
+        nuevaFila.insertCell(5).textContent = documento;
+        nuevaFila.insertCell(6).textContent = correo;
+        nuevaFila.insertCell(7).textContent = fecha;
+        nuevaFila.insertCell(8).textContent = genero;
+
+        const celdaAcciones = nuevaFila.insertCell(9);
+        celdaAcciones.style.display = "flex";
+        celdaAcciones.style.justifyContent = "space-around";
+        celdaAcciones.style.alignItems = "center";
+        celdaAcciones.style.gap = "10px";
+        celdaAcciones.style.height = "54px";
+
+        const btnActualizar = document.createElement("button");
+        btnActualizar.textContent = "🖋️";
+        btnActualizar.style.cursor = "pointer";
+        btnActualizar.style.borderRadius = "50%";
+        btnActualizar.style.backgroundColor = "#6A9DFCFF";
+        btnActualizar.style.width = "30px";
+        btnActualizar.style.height = "30px";
+        btnActualizar.onclick = function (event) {
+            event.stopPropagation();
+            filaSeleccionada = nuevaFila;
+            abrirModalActualizar();
+        };
+        celdaAcciones.appendChild(btnActualizar);
+
+        const btnEliminar = document.createElement("button");
+        btnEliminar.textContent = "❎";
+        btnEliminar.style.cursor = "pointer";
+        btnEliminar.style.borderRadius = "50%";
+        btnEliminar.style.backgroundColor = "#F43A3AFF";
+        btnEliminar.style.width = "30px";
+        btnEliminar.style.height = "30px";
+        btnEliminar.onclick = function (event) {
+            event.stopPropagation();
+            filaSeleccionada = nuevaFila;
+            abrirModalEliminar();
+        };
+        celdaAcciones.appendChild(btnEliminar);
+
+        for (let i = 0; i < nuevaFila.cells.length; i++) {
+            nuevaFila.cells[i].style.padding = "8px";
+            nuevaFila.cells[i].style.border = "1px solid #ddd";
+        }
+    }
+
+    const btnCrear = document.getElementById("btnAgregar");
+    btnCrear.onclick = function (event) {
+        event.stopPropagation();
+        abrirModalAgregar();
+    };
+
+    // Función para cerrar una alerta específica
+    function cerrarAlerta(idAlerta) {
+        document.getElementById(idAlerta).classList.add("d-none");
+    }
+
+    // Función para cerrar alerta y limpiar formulario
+    function cerrarAlertaYLimpiar(idAlerta) {
+        cerrarAlerta(idAlerta);
+        limpiarFormulario();
+    }
+
+    // Función para cerrar todas las alertas
+    function cerrarTodasLasAlertas() {
+        document.querySelectorAll('.alert').forEach(function (alerta) {
+            alerta.classList.add('d-none');
+        });
+    }
+
+    // Añadir elementos a la estructura DOM
+    divTabla.appendChild(tabla);
+    tabla.appendChild(encabezado);
+    encabezado.appendChild(filaEncabezado);
+    filaEncabezado.appendChild(celdaEncabezado0);
+    filaEncabezado.appendChild(celdaEncabezado1);
+    filaEncabezado.appendChild(celdaEncabezado2);
+    filaEncabezado.appendChild(celdaEncabezado3);
+    filaEncabezado.appendChild(celdaEncabezado4);
+    filaEncabezado.appendChild(celdaEncabezado5);
+    filaEncabezado.appendChild(celdaEncabezado6);
+    filaEncabezado.appendChild(celdaEncabezado7);
+    filaEncabezado.appendChild(celdaEncabezado8);
+    filaEncabezado.appendChild(celdaEncabezado9);
+    tabla.appendChild(cuerpoTabla);
+
+    // Añadir datos de ejemplo para pruebas
+    agregarRegistroATabla("Juan", "Pérez", "1234567890", "Cédula de Ciudadania", "12345678", "juan@ejemplo.com", "2024-04-27", "Masculino");
+
+    function filtrarTabla() {
+        const inputNombre = document.getElementById("buscar").value.toLowerCase();
+        const inputDocumento = document.getElementById("inputBuscarDocumento").value.toLowerCase();
+        const filas = document.querySelectorAll("#cuerpoTabla tr");
+
+        filas.forEach(fila => {
+            const nombre = fila.cells[1].textContent.toLowerCase();
+            const documento = fila.cells[5].textContent;
+    
+            if (nombre.includes(inputNombre) && documento.startsWith(inputDocumento)) {    //el startsWith hace que la busqueda inicie desde el primer digito
+                fila.style.display = "";
+            }else {
+                fila.style.display = "none";
+            }
+        });
+    }
+</script>
 </html>
