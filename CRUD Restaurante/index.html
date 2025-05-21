@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Repaso</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #ccc;
+    }
+
+    .contenedor {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 90%;
+    }
+
+    .contenedor h1 {
+        font-size: 50px;
+        color: rgb(0, 0, 0);
+        margin-bottom: 20px;
+        text-align: center;
+        text-decoration: underline;
+    }
+
+    .buscar {
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: space-between;
+        width: 70%;
+    }
+
+    .contenedor .buscar input {
+        padding: 10px;
+        border-radius: 10px;
+        border: 2px solid #ccc;
+    }
+
+    .contenedor .buscar input:focus {
+        border-color: #228b22;
+        outline: none;
+    }
+
+    .contenedor .modalFormulario .formulario {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 70%;
+        margin: 0 auto;
+    }
+
+    .formulario input,
+    select,
+    button {
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .formulario input:focus {
+        border: 3px solid #ccc;
+        border-color: #228b22;
+        outline: none;
+    }
+
+    .formulario #btn {
+        background-color: rgb(72, 72, 246);
+    }
+
+    #imgMesa {
+        width: 100%;
+        height: 250px;
+        margin-bottom: 10px;
+        border-radius: 10px 10px 0 0;
+    }
+
+    #mesas {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        border-radius: 10px;
+        gap: 10px;
+        background-color: rgb(163, 141, 105, 0.6);
+    }
+
+    #mesas p {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    #mesas button {
+        cursor: pointer;
+    }
+
+    #divCard {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+        border-radius: 10px;
+        margin: 10px;
+    }
+
+    .divCard.animar{
+        animation: aparecer 0.8s ease-in-out;
+    }
+
+    @keyframes aparecer {
+        from {
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    #divBotones {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 10px;
+    }
+
+    #divBotones .btnEditar {
+        background-color: white;
+        border: none;
+    }
+
+    #divBotones .btnEditar:hover{
+        background-color:#74faa18a ;
+    }
+
+    #divBotones .btnEliminar {
+        background-color: white;
+        border: none;
+    }
+
+    #divBotones .btnEliminar:hover{
+        background-color: rgba(78, 0, 0, 0.703);
+    }
+
+    #dialogoErrores {
+        box-shadow: 0 0 10px rgb(0, 0, 0);
+        border-radius: 10px;
+        border: 2px solid rgb(55, 42, 15);
+        background: linear-gradient(45deg,
+                rgb(193, 181, 120),
+                rgba(72, 45, 7, 0.7));
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        padding: 10px 20px 0px 20px;
+    }
+
+    #dialogoErrores h2 {
+        color: rgb(0, 0, 0);
+        font-size: 30px;
+        margin-bottom: 10px;
+    }
+
+    #dialogoErrores p {
+        text-align: center;
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    .boton {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+
+    .boton #btnCerrar {
+        color: white;
+        background-color: rgba(57, 41, 13, 0.5);
+        border: none;
+    }
+
+    #dialogoConfirmacion {
+        box-shadow: 0 0 10px rgb(1, 1, 1);
+        border-radius: 10px;
+        border: 2px solid rgb(65, 49, 21);
+        background: linear-gradient(45deg,
+                rgb(193, 181, 120),
+                rgba(72, 45, 7, 0.7));
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        padding: 10px 20px 0px 20px;
+    }
+
+    #dialogoConfirmacion h2 {
+        color: rgb(0, 0, 0);
+        font-size: 30px;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    #dialogoConfirmacion p {
+        text-align: center;
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    .boton #btnCerrarConfir {
+        color: white;
+        border: none;
+        background-color: rgba(57, 41, 13, 0.5);
+    }
+
+    .modalFormulario {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 70%;
+        z-index: 1;
+        border: none;
+        border-radius: 10px;
+        background-color: rgba(0, 0, 0, 0.8);
+        padding: 20px;
+    }
+
+    .btnAbrir {
+        margin-bottom: 20px;
+        position: relative;
+        padding: 10px 20px;
+        background-color: #f5f5dc;
+        color: black;
+        border: none;
+        border-radius: 0px;
+        font-size: 15px;
+        transition: 0.5s;
+        overflow: hidden;
+        cursor: pointer;
+    }
+
+    .btnAbrir::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 10px;
+        height: 10px;
+        border-top: 2px solid rgba(72, 45, 7, 0.7);
+        border-left: 2px solid rgba(72, 45, 7, 0.7);
+        transition: 0.5s;
+    }
+
+    .btnAbrir::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 10px;
+        height: 10px;
+        border-bottom: 2px solid rgba(72, 45, 7, 0.7);
+        border-right: 2px solid rgba(72, 45, 7, 0.7);
+        transition: 0.5s;
+    }
+
+    .btnAbrir:hover::before,
+    .btnAbrir:hover::after {
+        width: 100%;
+        height: 100%;
+    }
+
+    .btnAbrir:hover {
+        cursor: pointer;
+        background-color: #50c878;
+        color: #ffffff;
+        box-shadow: 0 0 20px #228b22, 0 0 40px #228b22, 0 0 80px #228b22;
+        transition-delay: 0.2s;
+    }
+
+    .cerrarFomulario {
+        display: flex;
+        justify-content: end;
+        font-size: 30px;
+        cursor: pointer;
+        color: white;
+        position: relative;
+        right: 10px;
+    }
+
+    @media (max-width: 480px) {
+        #mesas {
+            grid-template-columns: 1fr;
+        }
+
+        .contenedor h1 {
+            font-size: 30px;
+        }
+
+        .buscar {
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .modalFormulario {
+            width: 90%;
+        }
+    }
+
+    @media (max-width: 768px) {
+        #mesas {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+</style>
+
+<body>
+    <div class="contenedor">
+        <div>
+            <h1>Restaurante Explosiones de Sabores</h1>
+        </div>
+        <div class="buscar">
+            <div class="inputBuscar">
+                <input type="text" id="buscarMesa" placeholder="Buscar mesa" />
+            </div>
+            <div class="btnAbrirModal">
+                <button class="btnAbrir" onclick="abrirModal()">
+                    Agregar nueva mesa
+                </button>
+            </div>
+        </div>
+
+        <div id="modalFormu" class="modalFormulario">
+            <span class="cerrarFomulario" onclick="cerrarFormulario()">&times;</span>
+            <div class="formulario">
+                <input type="text" name="" id="numeroMesa" placeholder="Numero de mesa" />
+                <input type="text" name="" id="descripcionMesa" placeholder="Descripcion de la mesa" />
+                <select name="" id="estado">
+                    <option value="libre">Libre</option>
+                    <option value="ocupada">Ocupada</option>
+                    <option value="reservada">Reservada</option>
+                </select>
+                <input type="text" name="" id="numeroPersonas" placeholder="Numero de personas" />
+                <button id="btn">Guardar datos</button>
+            </div>
+        </div>
+
+        <div id="mesas"></div>
+
+        <dialog id="dialogoErrores">
+            <h2>Error en guardar la Mesa</h2>
+            <p id="parrafoError"></p>
+            <div class="boton">
+                <button id="btnCerrar">Cerrar</button>
+            </div>
+        </dialog>
+
+        <dialog id="dialogoConfirmacion">
+            <h2>Mesa agregada</h2>
+            <p>Se agrego la mesa correctamente</p>
+            <div class="boton">
+                <button id="btnCerrarConfir">Cerrar</button>
+            </div>
+        </dialog>
+    </div>
+    <script>
+        /*https://envanature.com/blog/wp-content/uploads/2022/12/restaurant-table-set-up-for-dinner-2022-11-15-21-05-15-utc-scaled.jpg*/
+
+        let datosMesa = [];
+        let modo = 0;
+        let numMesa = "";
+        let errores = [];
+
+        //funcion abrir modal
+        function abrirModal() {
+            let modalFormulario = document.getElementById("modalFormu");
+            modalFormulario.style.display = "block";
+        }
+
+        //funcion cerrar modal
+        function cerrarFormulario() {
+            document.getElementById("modalFormu").style.display = "none";
+        }
+
+        document.getElementById("btn").addEventListener("click", () => {
+            if (modo == 0) {
+                console.log("estoy guardando...");
+                guardarMesa();
+            } else if (modo == 1) {
+                console.log("estoy editando...");
+                editarMesa();
+            }
+        });
+
+        function guardarMesa() {
+            if (document.getElementById("numeroMesa").value == "") {
+                errores.push("Por favor digite el número de mesa");
+            } else if (document.getElementById("descripcionMesa").value == "") {
+                errores.push("Por favor digite la descripción de mesa");
+            } else if (document.getElementById("estado").value == "") {
+                errores.push("Por favor digite el estado de la mesa");
+            } else if (document.getElementById("numeroPersonas").value == "") {
+                errores.push("Por favor digite el número de personas en la mesa");
+            } else if (
+                datosMesa.find(
+                    (id) => id.numeroMesa == document.getElementById("numeroMesa").value
+                )
+            ) {
+                errores.push("Número de mesa ya existe");
+            } else {
+                let mesa = {
+                    numeroMesa: document.getElementById("numeroMesa").value,
+                    descripcion: document.getElementById("descripcionMesa").value,
+                    estado: document.getElementById("estado").value,
+                    numeroPersonas: document.getElementById("numeroPersonas").value,
+                };
+                console.log(mesa);
+                datosMesa.unshift(mesa);
+                limpiar();
+                console.log(datosMesa);
+                pintarMesas();
+            }
+            if (errores.length === 0) {
+                cerrarFormulario();
+                pintarMesas();
+
+                const primeraMesa = document.querySelector("#mesas .divCard")
+                if (primeraMesa){
+                    primeraMesa.classList.add("animar");
+
+                    setTimeout(() => {
+                        primeraMesa.classList.remove("animar")
+                    }, 800);
+                }
+            }
+
+            if (errores.length > 0) {
+                document.getElementById("parrafoError").textContent =
+                    errores.join(", ");
+                document.getElementById("dialogoErrores").showModal();
+
+                document.getElementById("btnCerrar").addEventListener("click", () => {
+                    document.getElementById("dialogoErrores").close();
+                    errores = [];
+                });
+            } else {
+                document.getElementById("dialogoConfirmacion").showModal();
+                document
+                    .getElementById("btnCerrarConfir")
+                    .addEventListener("click", () => {
+                        document.getElementById("dialogoConfirmacion").close();
+                    });
+            }
+        }
+
+        function limpiar() {
+            document.getElementById("numeroMesa").value = "";
+            document.getElementById("descripcionMesa").value = "";
+            document.getElementById("estado").value = "";
+            document.getElementById("numeroPersonas").value = "";
+        }
+
+        function editarMesa() {
+            let mesaActual = document.getElementById("numeroMesa").value;
+            let numeroMesaRepetido = datosMesa.find(
+                (id) => id.numeroMesa == mesaActual && id.numeroMesa != numMesa
+            );
+
+            if (numeroMesaRepetido) {
+                errores.push("mesa ya existe");
+            } else if (document.getElementById("numeroMesa").value == "") {
+                errores.push("Por favor digite el número de mesa");
+            } else if (document.getElementById("descripcionMesa").value == "") {
+                errores.push("Por favor digite la descripción de mesa");
+            } else if (document.getElementById("estado").value == "") {
+                errores.push("Por favor digite el estado de la mesa");
+            } else if (document.getElementById("numeroPersonas").value == "") {
+                errores.push("Por favor digite el número de personas en la mesa");
+            } else {
+                let indice = datosMesa.findIndex((it) => it.numeroMesa == numMesa);
+                console.log(indice);
+
+                datosMesa[indice].numeroMesa =
+                    document.getElementById("numeroMesa").value;
+                datosMesa[indice].descripcion =
+                    document.getElementById("descripcionMesa").value;
+                datosMesa[indice].estado = document.getElementById("estado").value;
+                datosMesa[indice].numeroPersonas =
+                    document.getElementById("numeroPersonas").value;
+
+                pintarMesas();
+                modo = 0;
+                document.getElementById("btn").textContent = "Guardar mesa";
+                limpiar();
+                cerrarFormulario();
+            }
+
+            if (errores.length > 0) {
+                document.getElementById("parrafoError").textContent =
+                    errores.join(", ");
+                document.getElementById("dialogoErrores").showModal();
+
+                document.getElementById("btnCerrar").addEventListener("click", () => {
+                    document.getElementById("dialogoErrores").close();
+                    errores = [];
+                });
+            }
+        }
+
+        function pintarMesas() {
+            document.getElementById("mesas").textContent = "";
+            datosMesa.forEach((item, i) => {
+                let divCard = document.createElement("div");
+                let divImg = document.createElement("div");
+                let imagen = document.createElement("img");
+                divCard.className = "divCard"
+
+                divCard.id = "divCard";
+                imagen.id = "imgMesa";
+                imagen.src =
+                    "https://envanature.com/blog/wp-content/uploads/2022/12/restaurant-table-set-up-for-dinner-2022-11-15-21-05-15-utc-scaled.jpg";
+
+                divImg.appendChild(imagen);
+                divCard.appendChild(divImg);
+                document.getElementById("mesas").appendChild(divCard);
+
+                let divTextos = document.createElement("div");
+                let parrafoDescripcion = document.createElement("p");
+                parrafoDescripcion.textContent = item.descripcion;
+                divTextos.appendChild(parrafoDescripcion);
+                divCard.appendChild(divTextos);
+
+                let divCapacidad = document.createElement("div");
+                let parrafoCantidad = document.createElement("p");
+                parrafoCantidad.textContent = `Numero de mesa: ${item.numeroMesa}`;
+                divCapacidad.appendChild(parrafoCantidad);
+                divCard.appendChild(divCapacidad);
+
+                let divEstado = document.createElement("div");
+                let parrafoEstado = document.createElement("p");
+                parrafoEstado.textContent = `Estado de la mesa: ${item.estado}`;
+                divEstado.appendChild(parrafoEstado);
+                divCard.appendChild(divEstado);
+
+                let divCapacidadPersonas = document.createElement("div");
+                let parrafoCapacidadPersonas = document.createElement("p");
+                parrafoCapacidadPersonas.textContent = `Número de personas: ${item.numeroPersonas}`;
+                divCapacidadPersonas.appendChild(parrafoCapacidadPersonas);
+                divCard.appendChild(divCapacidadPersonas);
+
+                let divBotones = document.createElement("div");
+                divBotones.id = "divBotones";
+                let btnEditar = document.createElement("button");
+                btnEditar.className = "btnEditar"
+                let btnEliminar = document.createElement("button");
+                btnEliminar.className = "btnEliminar"
+
+                btnEditar.textContent = "🖋️";
+                btnEditar.addEventListener("click", () => {
+                    document.getElementById("numeroMesa").value = item.numeroMesa;
+                    document.getElementById("descripcionMesa").value = item.descripcion;
+                    document.getElementById("estado").value = item.estado;
+                    document.getElementById("numeroPersonas").value =
+                        item.numeroPersonas;
+                    document.getElementById("btn").textContent = "Editar mesa";
+
+                    abrirModal();
+                    modo = 1;
+                    numMesa = item.numeroMesa;
+                    console.log(numMesa);
+                });
+                btnEliminar.textContent = "❌";
+                btnEliminar.addEventListener("click", () => {
+                    let indice = datosMesa.findIndex(
+                        (it) => it.numeroMesa == item.numeroMesa
+                    );
+                    console.log(`Posición eliminda: ${indice}`);
+                    datosMesa.splice(indice, 1);
+                    console.log(datosMesa);
+
+                    pintarMesas();
+                });
+
+                divBotones.appendChild(btnEditar);
+                divBotones.appendChild(btnEliminar);
+                divCard.appendChild(divBotones);
+
+                if (item.estado == "libre") {
+                    divCard.style.backgroundColor = "white";
+                } else if (item.estado == "ocupada") {
+                    divCard.style.backgroundColor = "red";
+                } else {
+                    divCard.style.backgroundColor = "green";
+                }
+            });
+        }
+
+        function buscarMesa() {
+            let buscar = document.getElementById("buscarMesa").value;
+            let datos = document.querySelectorAll("#mesas > div");
+
+            datos.forEach((mesa, i) => {
+                let numeroMesa = datosMesa[i].numeroMesa;
+
+                if (numeroMesa.includes(buscar)) {
+                    mesa.style.display = "";
+                } else {
+                    mesa.style.display = "none";
+                }
+            });
+        }
+        document
+            .getElementById("buscarMesa").addEventListener("input", buscarMesa);
+    </script>
+</body>
+
+</html>
