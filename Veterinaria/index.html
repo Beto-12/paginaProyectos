@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Veterinaria</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
+  </head>
+
+  <body>
+    <div id="contenedorFormulario" class="contenedorFormulario">
+      <div class="headerModal">
+        <h2 class="encabezado">Agendar cita</h2>
+        <span class="cerrarForm" onclick="cerrarFormulario()">&times;</span>
+      </div>
+
+      <div class="formulario">
+        <input
+          type="text"
+          name="nombre"
+          id="nombre"
+          placeholder="Nombre de la mascota"
+          required
+        />
+        <input
+          type="text"
+          name="propietario"
+          id="propietario"
+          placeholder="Nombre del propietario"
+        />
+        <input
+          type="text"
+          name="telefono"
+          id="telefono"
+          placeholder="Telefono"
+        />
+        <div class="fechaHora">
+          <input type="date" name="fecha" id="fecha" />
+          <input type="time" name="hora" id="hora" />
+        </div>
+        <div class="tipoMascota">
+          <select name="" id="tipoMascotas">
+            <option value="">Seleccione...</option>
+            <option value="perro">Perro</option>
+            <option value="gato">Gato</option>
+            <option value="loro">Loro</option>
+            <option value="vaca">Vaca</option>
+            <option value="caballo">Caballo</option>
+            <option value="cerdo">Cerdo</option>
+            <option value="pato">Pato</option>
+            <option value="conejo">Conejo</option>
+            <option value="oveja">Oveja</option>
+            <option value="gallina">Gallina</option>
+          </select>
+        </div>
+        <div class="textareaSpan">
+          <span id="spanContador">0/400</span>
+          <textarea
+            name="motivo"
+            id="motivo"
+            rows="4"
+            cols="40"
+            placeholder="motivo de la cita"
+            maxlength="400"
+          ></textarea>
+        </div>
+        <div id="divEstados">
+          <select name="" id="estadoCita">
+            <option value="Abierta">Abierta</option>
+            <option value="Terminada">Terminada</option>
+            <option value="Anulada">Anulada</option>
+          </select>
+        </div>
+        <div class="btnEnviar">
+          <button id="btnEnviar" class="button" onclick="enviarForm()">
+            Enviar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="contenedorPadre" id="padre">
+      <h1>Veterinaria SalvaPets</h1>
+
+      <div class="selectButton">
+        <select name="" id="estados" class="select">
+          <option>Todas las citas</option>
+          <option>Abierta</option>
+          <option>Terminada</option>
+          <option>Anulada</option>
+        </select>
+
+        <input
+          type="text"
+          id="buscarNombres"
+          class="buscar"
+          placeholder="Buscar por nombre de la mascota o por el dueño"
+        />
+
+        <button class="btnForm" onclick="registrarMascota()">
+          Registrar mascota
+        </button>
+      </div>
+
+      <div class="contenedorCitas">
+        <div id="contenedorCards"></div>
+      </div>
+
+      <!-- Dialogo de errores -->
+      <dialog id="dialogoErrores">
+        <h2>Error al agendar cita</h2>
+        <p id="parrafoError"></p>
+        <div class="boton">
+          <button id="btnCerrar">Cerrar</button>
+        </div>
+      </dialog>
+
+      <!-- Dialogo de exito -->
+      <dialog id="dialogoConfirmacion">
+        <h2>Cita agregada</h2>
+        <p>Se agrego la cita correctamente</p>
+        <div class="boton">
+          <button id="btnCerrarConfir">Cerrar</button>
+        </div>
+      </dialog>
+
+      <!-- Dialogo confrimar eliminación -->
+      <dialog id="dialogoConfirmacionEliminar">
+        <p>¿Estas seguro de que quieres eliminar esta cita?</p>
+        <div class="botonesConfirmacionEliminar">
+          <button id="btnAceptar" onclick="btnAceptarEliminacion()">
+            Aceptar
+          </button>
+          <button id="btnCancelar" onclick="btnCancelarEliminacion()">
+            Cancelar
+          </button>
+        </div>
+      </dialog>
+    </div>
+    <footer class="footer">&COPY; Hecha por Carlos</footer>
+  </body>
+
+  <script>
+    document.getElementById("fecha").min = new Date()
+      .toISOString()
+      .split("T")[0];
+  </script>
+</html>
