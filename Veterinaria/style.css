@@ -1,471 +1,458 @@
-:root {
-  --primary: #4a6fa5;
-  --primary-light: #e8f0f7;
-  --secondary: #6b8e9f;
-  --light: #f8fafc;
-  --dark: #2d3748;
-  --success: #48bb78;
-  --error: #e53e3e;
-  --warning: #ed8936;
-  --border: #e2e8f0;
-  --card-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-}
+ * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
 
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
-}
+        body {
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            background-color: #f8fafc;
+            color: #2d3748;
+            line-height: 1.6;
+        }
 
-body {
-  min-height: 100vh;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  background-color: var(--light);
-  color: var(--dark);
-  line-height: 1.6;
-}
+        .contenedorPadre {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin: 0 auto;
+            width: 90%;
+            padding: 20px 0;
+        }
 
-.contenedorPadre {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin: 0 auto;
-  width: 90%;
-  padding: 20px 0;
-}
+        h1 {
+            color: #4a6fa5;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 50px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
 
-h1 {
-  color: var(--primary);
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 50px;
-  font-weight: 300;
-  letter-spacing: 1px;
-}
+        .selectButton {
+            display: flex;
+            justify-content: space-between;
+            width: 90%;
+            margin-top: 20px;
+        }
 
-.selectButton {
-  display: flex;
-  justify-content: space-between;
-  width: 90%;
-  margin-top: 20px;
-}
+        .selectButton .buscar {
+            width: 400px;
+        }
 
-.selectButton .buscar {
-  width: 400px;
-}
+        .select, .buscar {
+            border: 1px solid #e2e8f0;
+            padding: 12px 15px;
+            border-radius: 6px;
+            background-color: rgb(240, 240, 240);
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
 
-.select, .buscar {
-  border: 1px solid var(--border);
-  padding: 12px 15px;
-  border-radius: 6px;
-  background-color: rgb(240, 240, 240);
-  font-size: 16px;
-  transition: border-color 0.3s;
-}
+        .select:focus, .buscar:focus {
+            border-color: #4a6fa5;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(74, 111, 165, 0.1);
+        }
 
-.select:focus, .buscar:focus {
-  border-color: var(--primary);
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(74, 111, 165, 0.1);
-}
+        .footer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: auto;
+            padding: 15px;
+            width: 100%;
+            background-color: #4a6fa5;
+            color: white;
+            font-size: 16px;
+        }
 
-.footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: auto;
-  padding: 15px;
-  width: 100%;
-  background-color: var(--primary);
-  color: white;
-  font-size: 16px;
-}
+        .btnForm {
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 6px;
+            background-color: #4a6fa5;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
 
-.btnForm {
-  border: none;
-  padding: 12px 25px;
-  font-size: 16px;
-  border-radius: 6px;
-  background-color: var(--primary);
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
+        .btnForm:hover {
+            background-color: #3a5a85;
+        }
 
-.btnForm:hover {
-  background-color: #3a5a85;
-}
+        .contenedorFormulario {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            margin-top: 10px;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 8px;
+            padding: 0;
+            background-color: white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            animation: aparecer 0.8s ease-out;
+        }
 
-.contenedorFormulario {
-  display: none;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1000;
-  margin-top: 10px;
-  width: 90%;
-  max-width: 500px;
-  border-radius: 8px;
-  padding: 0;
-  background-color: white;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  animation: aparecer 0.8s ease-out;
-}
+        @keyframes aparecer {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
 
-@keyframes aparecer {
-  from {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.8);
-  }
-  to {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-  }
-}
+        .headerModal {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 8px 8px 0 0;
+            background-color: #4a6fa5;
+            padding: 15px;
+        }
 
-.headerModal {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-radius: 8px 8px 0 0;
-  background-color: var(--primary);
-  padding: 15px;
-}
+        .headerModal .encabezado {
+            font-size: 30px;
+            font-family: Arial, Helvetica, sans-serif;
+            color: white;
+            font-weight: 400;
+        }
 
-.headerModal .encabezado {
-  font-size: 30px;
-  font-family: Arial, Helvetica, sans-serif;
-  color: white;
-  font-weight: 400;
-}
+        .headerModal .cerrarForm {
+            font-size: 32px;
+            font-weight: 300;
+            cursor: pointer;
+            color: white;
+            background: none;
+            border: none;
+            line-height: 1;
+        }
 
-.headerModal .cerrarForm {
-  font-size: 32px;
-  font-weight: 300;
-  cursor: pointer;
-  color: white;
-  background: none;
-  border: none;
-  line-height: 1;
-}
+        .formulario {
+            padding: 15px;
+        }
 
-.formulario {
-  padding: 15px;
-}
+        .formulario input, 
+        .formulario select, 
+        .formulario textarea {
+            width: 100%;
+            margin: 8px 0;
+            padding: 10px 15px;
+            border-radius: 6px;
+            border: 1px solid #e2e8f0;
+            font-size: 16px;
+            font-family: Arial, Helvetica, sans-serif;
+            transition: border-color 0.3s;
+        }
 
-.formulario input, 
-.formulario select, 
-.formulario textarea {
-  width: 100%;
-  margin: 8px 0;
-  padding: 10px 15px;
-  border-radius: 6px;
-  border: 1px solid var(--border);
-  font-size: 16px;
-  font-family: Arial, Helvetica, sans-serif;
-  transition: border-color 0.3s;
-}
+        .formulario input:focus, 
+        .formulario select:focus, 
+        .formulario textarea:focus {
+            border-color: #4a6fa5;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(74, 111, 165, 0.1);
+        }
 
-.formulario input:focus, 
-.formulario select:focus, 
-.formulario textarea:focus {
-  border-color: var(--primary);
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(74, 111, 165, 0.1);
-}
+        .formulario .fechaHora {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            column-gap: 15px;
+        }
 
-.formulario .fechaHora{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 15px;
-}
+        .textareaSpan {
+            display: flex; 
+            flex-direction: column;
+        }
 
-.textareaSpan {
-  display: flex; 
-  flex-direction: column;
-}
+        #spanContador {
+            display: flex; 
+            justify-content: end;
+            font-size: 15px;
+            padding: 0px 5px;
+        }
 
-#spanContador {
-  display: flex; 
-  justify-content: end;
-  font-size: 15px;
-  padding: 0px 5px;
-}
+        .btnEnviar {
+            text-align: center;
+            margin-top: 10px;
+        }
 
-.btnEnviar {
-  text-align: center;
-  margin-top: 10px;
-}
+        .btnEnviar .button {
+            border: none;
+            border-radius: 6px;
+            padding: 12px 30px;
+            font-size: 16px;
+            background-color: #4a6fa5;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
 
-.btnEnviar .button {
-  border: none;
-  border-radius: 6px;
-  padding: 12px 30px;
-  font-size: 16px;
-  background-color: var(--primary);
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
+        .btnEnviar .button:hover {
+            background-color: #3a5a85;
+        }
 
-.btnEnviar .button:hover {
-  background-color: #3a5a85;
-}
+        #contenedorCards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            row-gap: 20px;
+            margin: 30px 0px;
+        }
 
-#contenedorCards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-  border-radius: 10px;
-  row-gap: 20px;
-  margin: 30px 0px;
-}
+        .divCard {
+            border-radius: 8px;
+            padding: 20px;
+            margin: 10px;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            font-family: cursive;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
 
-.divCard {
-  border-radius: 8px;
-  padding: 20px;
-  margin: 10px;
-  background-color: white;
-  box-shadow: var(--card-shadow);
-  font-family: cursive;
-  transition: transform 0.3s, box-shadow 0.3s;
-  position: relative;
-}
+        .divCard:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
 
-.divCard:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-}
+        .imagenCard {
+            width: 100%;
+            height: 200px;
+            border-radius: 6px;
+            object-fit: cover;
+            margin: 15px 0px;
+            background-color: #f5f5f5;
+        }
 
-.imagenCard {
-  width: 100%;
-  height: 200px;
-  border-radius: 6px;
-  object-fit: cover;
-  margin: 15px 0px;
-  background-color: #f5f5f5;
-}
+        .divCard h2, .divCard h3 {
+            color: #4a6fa5;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
 
-.divCard h2, .divCard h3 {
-  color: var(--primary);
-  font-weight: 500;
-  margin-bottom: 5px;
-}
+        .divCard p {
+            margin-bottom: 8px;
+            color: #4a5568;
+        }
 
-.divCard p {
-  margin-bottom: 8px;
-  color: #4a5568;
-}
+        .estadoCita {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 15px;
+            background-color: #e8f0f7;
+            color: #4a6fa5;
+        }
 
-.estadoCita {
-  display: inline-block;
-  padding: 5px 12px;
-  border-radius: 20px;
-  font-size: 15px;
-  background-color: var(--primary-light);
-  color: var(--primary);
-}
+        .divBotones {
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
 
-.divBotones {
-  margin-top: 10px;
-  display: flex;
-  justify-content: space-between;
-}
+        .divBotones button:hover {
+            opacity: 0.9;
+        }
 
-.divBotones button:hover {
-  opacity: 0.9;
-}
+        .divBotones .botonEliminar {
+            background-color: #e53e3e;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
 
-.divBotones .botonEliminar {
-  background-color: var(--error);
-  color: white;
-  border: none;
-  padding: 10px;
-  border-radius: 10px;
-  cursor: pointer;
-}
+        .divBotones .botonEditar {
+            background-color: #48bb78;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
 
-.divBotones .botonEditar {
-  background-color: var(--success);
-  color: white;
-  border: none;
-  padding: 10px;
-  border-radius: 10px;
-  cursor: pointer;
-}
+        #dialogoErrores {
+            border-radius: 10px;
+            background-color: white;
+            position: fixed;
+            left: 50%;
+            top: 12%;
+            transform: translate(-50%, -50%);
+            padding: 10px 20px 10px 20px;
+            font-family: Arial, Helvetica, sans-serif;
+            width: 400px;
+        }
 
-#dialogoErrores {
-  border-radius: 10px;
-  background-color: white;
-  position: fixed;
-  left: 50%;
-  top: 12%;
-  transform: translate(-50%, -50%);
-  padding: 10px 20px 10px 20px;
-  font-family:Arial, Helvetica, sans-serif;
-  width: 400px;
-}
+        #dialogoErrores h2 {
+            color: #4a6fa5;
+            font-size: 30px;
+            margin-bottom: 10px;
+            text-align: center;
+            font-weight: 500;
+        }
 
-#dialogoErrores h2 {
-  color: var(--primary);
-  font-size: 30px;
-  margin-bottom: 10px;
-  text-align: center;
-  font-weight: 500;
-}
+        #dialogoErrores p {
+            text-align: center;
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #4a5568;
+            line-height: 1.6;
+        }
 
-#dialogoErrores p {
-  text-align: center;
-  font-size: 20px;
-  margin-bottom: 10px;
-  color: #4a5568;
-  line-height: 1.6;
-}
+        .boton {
+            display: flex;
+            justify-content: center;
+        }
 
-.boton {
-  display: flex;
-  justify-content: center;
-}
+        .boton #btnCerrar {
+            color: white;
+            background-color: #4a6fa5;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 15px;
+        }
 
-.boton #btnCerrar {
-  color: white;
-  background-color: var(--primary);
-  border: none;
-  border-radius: 5px;
-  padding: 5px 15px;
-}
+        #dialogoConfirmacion {
+            box-shadow: 0 0 10px rgb(0, 0, 0);
+            border-radius: 10px;
+            background-color: white;
+            position: fixed;
+            left: 50%;
+            top: 12%;
+            transform: translate(-50%, -50%);
+            padding: 10px 20px 10px 20px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
 
-#dialogoConfirmacion {
-  box-shadow: 0 0 10px rgb(0, 0, 0);
-  border-radius: 10px;
-  background-color: white;
-  position: fixed;
-  left: 50%;
-  top: 12%;
-  transform: translate(-50%, -50%);
-  padding: 10px 20px 10px 20px;
-  font-family:Arial, Helvetica, sans-serif;
-}
+        #dialogoConfirmacion h2 {
+            color: #4a6fa5;
+            font-size: 30px;
+            margin-bottom: 10px;
+            text-align: center;
+            font-weight: 500;
+        }
 
-#dialogoConfirmacion h2 {
-  color: var(--primary);
-  font-size: 30px;
-  margin-bottom: 10px;
-  text-align: center;
-  font-weight: 500;
-}
+        #dialogoConfirmacion p {
+            text-align: center;
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #4a5568;
+            line-height: 1.6;
+        }
 
-#dialogoConfirmacion p {
-  text-align: center;
-  font-size: 20px;
-  margin-bottom: 10px;
-  color: #4a5568;
-  line-height: 1.6;
-}
+        .boton {
+            display: flex;
+            justify-content: center;
+        }
 
-.boton {
-  display: flex;
-  justify-content: center;
-}
+        .boton #btnCerrarConfir {
+            color: white;
+            background-color: #4a6fa5;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 15px;
+        }
 
-.boton #btnCerrarConfir {
-  color: white;
-  background-color: var(--primary);
-  border: none;
-  border-radius: 5px;
-  padding: 5px 15px;
-}
+        #dialogoConfirmacionEliminar {
+            box-shadow: 0 0 10px rgb(0, 0, 0);
+            border-radius: 10px;
+            background-color: white;
+            position: fixed;
+            left: 50%;
+            top: 12%;
+            transform: translate(-50%, -50%);
+            padding: 10px 20px 10px 20px;
+            font-family: Arial, Helvetica, sans-serif;
+            
+        }
 
-#dialogoConfirmacionEliminar {
-  box-shadow: 0 0 10px rgb(0, 0, 0);
-  border-radius: 10px;
-  background-color: white;
-  position: fixed;
-  left: 50%;
-  top: 12%;
-  transform: translate(-50%, -50%);
-  padding: 10px 20px 10px 20px;
-  font-family:Arial, Helvetica, sans-serif;
-  
-}
+        #dialogoConfirmacionEliminar p {
+            color: #4a6fa5;
+            font-size: 25px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
 
-#dialogoConfirmacionEliminar p {
-  color: var(--primary);
-  font-size: 25px;
-  margin-bottom: 10px;
-  text-align: center;
-}
+        .botonesConfirmacionEliminar {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
 
-.botonesConfirmacionEliminar {
-  display: flex;
-  justify-content: space-around;
-  margin-top: 20px;
-}
+        .botonesConfirmacionEliminar #btnAceptar {
+            cursor: pointer;
+            background-color: #48bb78;
+            padding: 10px 15px;
+            color: white;
+            border: none;
+            border-radius: 10px;
+        }
 
-.botonesConfirmacionEliminar #btnAceptar {
-  cursor: pointer;
-  background-color: var(--success);
-  padding: 10px 15px;
-  color: white;
-  border: none;
-  border-radius: 10px;
-}
+        .botonesConfirmacionEliminar #btnCancelar {
+            cursor: pointer;
+            background-color: #718096;
+            padding: 10px 15px;
+            color: white;
+            border: none;
+            border-radius: 10px;
+        }
 
-.botonesConfirmacionEliminar #btnCancelar {
-  cursor: pointer;
-  background-color: #718096;
-  padding: 10px 15px;
-  color: white;
-  border: none;
-  border-radius: 10px;
-}
+        #divEstados {
+            display: none;
+        }
 
-#divEstados {
-  display: none;
-}
+        @media (max-width: 768px) {
+            .selectButton {
+                flex-direction: column;
+                row-gap: 10px;
+            }
 
-@media (max-width: 768px) {
-  .selectButton {
-    flex-direction: column;
-    row-gap: 10px;
-  }
+            .selectButton .buscar {
+                width: 100%;
+            }
 
-  .selectButton .buscar {
-    width: 100%;
-  }
+            .fechaHora {
+                grid-template-columns: 1fr;
+            }
 
-  .fechaHora {
-    grid-template-columns: 1fr;
-  }
+            #contenedorCards {
+                grid-template-columns: 1fr;
+            }
 
-  #contenedorCards {
-    grid-template-columns: 1fr;
-  }
+            #dialogoErrores, #dialogoConfirmacion, #dialogoConfirmacionEliminar {
+                width: 90%;
+                padding: 20px;
+            }
+        }
 
-  #dialogoErrores, #dialogoConfirmacion, #dialogoConfirmacionEliminar {
-    width: 90%;
-    padding: 20px;
-  }
-}
+        @media (max-width: 480px) {
+            .contenedorFormulario {
+                width: 90%;
+            }
 
-@media (max-width: 480px){
-  .contenedorFormulario {
-    width: 90%;
-  }
+            .headerModal .encabezado {
+                font-size: 19px;
+            } 
 
-  .headerModal .encabezado {
-    font-size: 19px;
-  } 
+            h1 {
+                font-size: 32px;
+            }
 
-  h1 {
-    font-size: 32px;
-  }
-
-  #dialogoErrores, #dialogoConfirmacion, #dialogoConfirmacionEliminar {
-    margin-top: 30px;
-  }
-}
+            #dialogoErrores, #dialogoConfirmacion, #dialogoConfirmacionEliminar {
+                margin-top: 30px;
+            }
+          }
