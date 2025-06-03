@@ -1,5 +1,4 @@
 // variables globales
-//let contadorCitas = 1;
 let errores = [];
 let arrayMascotas = [];
 let modo = 0;
@@ -115,7 +114,6 @@ function validarFormulario() {
             sintomas: sintomas,
             estado: estado
         }
-        //contadorCitas++;
         arrayMascotas.unshift(mascota);
         console.log(arrayMascotas);
         guardarLocalStorage();
@@ -291,7 +289,7 @@ function pintarMascotas() {
         divCard.appendChild(divTipo);
 
         if (item.tipoMascota == "perro") {
-            imagen.src = "https://content.app-sources.com/s/42985293461004322/uploads/Images/pngwing.com_8-1799045.png?format=webp";
+            imagen.src = "https://es.mypet.com/wp-content/uploads/sites/23/2021/03/GettyImages-1143107320-e1597136744606.jpg";
         } else if (item.tipoMascota == "gato") {
             imagen.src = "https://hospitalveterinariodonostia.com/wp-content/uploads/2022/02/Personalidad-gatos.png";
         } else if (item.tipoMascota == "loro") {
@@ -303,7 +301,7 @@ function pintarMascotas() {
         } else if (item.tipoMascota == "cerdo") {
             imagen.src = "https://www.animanaturalis.org/img/pages/full/202005/P27-11697.jpg"
         } else if (item.tipoMascota == "pato") {
-            imagen.src = "https://media.istockphoto.com/id/464988959/es/foto/%C3%A1nade-real-con-trazado-de-recorte.jpg?s=612x612&w=0&k=20&c=PAIRHbQK8O5urZ33f94YIMegMvOHEPH0lhwgup57nCA="
+            imagen.src = "https://www.allaboutbirds.org/guide/assets/photo/308743051-1900px.jpg?__hstc=6989805.2f3f33a24b44870ec4a577029c49e44b.1747785600117.1747785600118.1747785600119.1&__hssc=6989805.1.1747785600120&__hsfp=3282704936"
         } else if (item.tipoMascota == "conejo") {
             imagen.src = "https://de.cdn-website.com/067971d52ba44fdcb3a1d4ff47e1118c/dms3rep/multi/conejo-99a4995b.jpg"
         } else if (item.tipoMascota == "oveja") {
@@ -346,6 +344,7 @@ function pintarMascotas() {
             document.getElementById("hora").value = item.hora;
             document.getElementById("tipoMascotas").value = item.tipoMascota;
             document.getElementById("motivo").value = item.sintomas;
+            document.getElementById("estadoCita").value = item.estado;
 
             document.getElementById("divEstados").style.display = "block";
 
@@ -363,8 +362,6 @@ function pintarMascotas() {
             document.getElementById("dialogoConfirmacionEliminar").showModal();
             idMascota = item.id; // Guardamos el id de la mascota a eliminar
         });
-
-
 
         divBotones.appendChild(botonEditar);
         divBotones.appendChild(botonEliminar);
@@ -402,9 +399,9 @@ function filtrarEstado() {
         let estadoMascota = arrayMascotas[i].estado;
 
         if (estadoMascota.includes(estadoSeleccionado)){
-            m.style.display = "block"; // Muestra la mascota si el estado coincide
+            m.style.display = ""; // Muestra la mascota si el estado coincide
         } else if (estadoSeleccionado === "Todas las citas"){
-            m.style.display = "block"; // Muestra todas las mascotas si se selecciona "Todas"
+            m.style.display = ""; // Muestra todas las mascotas si se selecciona "Todas"
         } else {
             m.style.display = "none"; // Oculta la mascota si el estado no coincide
         }
