@@ -63,6 +63,11 @@ function cerrarFormulario() {
     let formNone = document.getElementById("contenedorFormulario")
     formNone.style.display = "none";
     document.getElementById("padre").style.filter = "blur(0px)";
+
+    limpiarFormulario();
+    document.getElementById("divEstados").style.display = "none";
+    document.getElementById("btnEnviar").textContent = "Guardar mascota";
+    modo=0;
 }
 
 function enviarForm() {
@@ -351,7 +356,7 @@ function pintarMascotas() {
             // Cambiamos el texto del boton de enviar
             document.getElementById("btnEnviar").textContent = "Actualizar";
 
-            
+
             registrarMascota();
             modo = 1; // Cambiamos el modo a editar
             idMascota = item.id; // Guardamos el id de la mascota a editar
@@ -410,7 +415,7 @@ function filtrarEstado() {
 
 // Funcion para buscar mascotas por su nombre o por el nombre del dueño
 function buscarNombres() {
-    let inputBuscar = document.getElementById("buscarNombres").value.toLowerCase();
+    let inputBuscar = document.getElementById("buscarNombres").value.toLowerCase().trim();
     let mascotas = document.querySelectorAll("#contenedorCards > div");
 
     mascotas.forEach((m, i) => {
