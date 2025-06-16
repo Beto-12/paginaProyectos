@@ -98,7 +98,7 @@ function validarFormulario() {
     } else if (fecha == "") {
         errores.push("La fecha es obligatoria");
     } else if (new Date(fecha) < new Date().setHours(0, 0, 0, 0)) {
-        errores.push("La fecha no debe ser menor a la anterior");
+        errores.push("La fecha no debe ser menor a la actual");
     } else if (hora == "") {
         errores.push("La hora es obligatoria");
     } else if (hora < "08:00" || hora > "20:00") {

@@ -300,7 +300,7 @@
   }
 
   #dialogoErrores h2 {
-    color: #4a6fa5;
+    color: red;
     font-size: 30px;
     margin-bottom: 10px;
     text-align: center;
@@ -311,7 +311,7 @@
     text-align: center;
     font-size: 20px;
     margin-bottom: 10px;
-    color: #4a5568;
+    color: red;
     line-height: 1.6;
   }
 
@@ -322,7 +322,7 @@
 
   .boton #btnCerrar {
     color: white;
-    background-color: #4a6fa5;
+    background-color: #fb2929;
     border: none;
     border-radius: 5px;
     padding: 5px 15px;
@@ -341,7 +341,7 @@
   }
 
   #dialogoConfirmacion h2 {
-    color: #4a6fa5;
+    color: green;
     font-size: 30px;
     margin-bottom: 10px;
     text-align: center;
@@ -352,7 +352,7 @@
     text-align: center;
     font-size: 20px;
     margin-bottom: 10px;
-    color: #4a5568;
+    color: green;
     line-height: 1.6;
   }
 
@@ -363,7 +363,7 @@
 
   .boton #btnCerrarConfir {
     color: white;
-    background-color: #4a6fa5;
+    background-color: #42fa42;
     border: none;
     border-radius: 5px;
     padding: 5px 15px;
