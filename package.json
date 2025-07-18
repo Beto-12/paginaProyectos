@@ -1,0 +1,7 @@
+{
+"name": "portfolio-proyectos",
+"version": "1.0.0",
+"scripts": {
+    "build": "cd Ahorcado && npm install && npm run build"
+}
+}
