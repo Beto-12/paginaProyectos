@@ -2,6 +2,6 @@
 "name": "portfolio-proyectos",
 "version": "1.0.0",
 "scripts": {
-    "build": "cd Ahorcado && npm install && npm run build"
+    "build": "mkdir -p dist && cp -r *.html dist/ && cp -r CRUD\\ Restaurante dist/ && cp -r Pokeapi dist/ && cp -r Veterinaria dist/ && cp -r paginaCurriculum dist/ && cp -r paginaQuienSoyYo dist/ && cp -r paginaSuperheroes dist/ && cp -r pagina_electronica dist/ && cp -r FormularioDialogo.html dist/ && cd Ahorcado && npm install && npm run build"
 }
 }
