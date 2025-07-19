@@ -344,8 +344,8 @@ const partesVisibles = computed(() => {
 
 const cabezaMario = computed(() => {
   return juegoTerminado.value
-    ? "images/cabezaMuerto.png"
-    : "images/cabezaMario.png"
+    ? new URL("../public/images/cabezaMuerto.png", import.meta.url).href
+    : new URL("../public/images/cabezaMario.png", import.meta.url).href;
 })
 
 // Mostrar palabra oculta
