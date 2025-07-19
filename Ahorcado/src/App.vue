@@ -343,10 +343,9 @@ const partesVisibles = computed(() => {
 });
 
 const cabezaMario = computed(() => {
-  if(juegoTerminado.value){
-    return "/public/images/cabezaMuerto.png";
-  }
-  return "/public/images/cabezaMario.png"
+  return juegoTerminado.value
+    ? "images/cabezaMuerto.png"
+    : "images/cabezaMario.png"
 })
 
 // Mostrar palabra oculta
